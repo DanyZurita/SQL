@@ -62,7 +62,9 @@ SELECT OD.OrderID, OD.ProductID, P.ProductName, OD.UnitPrice, OD.Quantity, OD.Di
 
 /* 9. */
 
-
+SELECT SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS TotalPrice 
+	FROM `Order Details` AS OD 
+	WHERE  OD.OrderID = "10248" 
 
 /* 10. */
 
