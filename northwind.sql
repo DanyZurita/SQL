@@ -55,7 +55,10 @@ SELECT C.CategoryID, C.CategoryName, COUNT(P.CategoryID) AS Number
 
 /* 8. */
 
-
+SELECT OD.OrderID, OD.ProductID, P.ProductName, OD.UnitPrice, OD.Quantity, OD.Discount, SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS ExtentedPrice 
+	FROM `Order Details` AS OD, Products AS P 
+	WHERE OD.ProductID = P.ProductID AND OD.OrderID = "10248" 
+		GROUP BY OD.ProductID
 
 /* 9. */
 
