@@ -48,7 +48,10 @@ SELECT C.CategoryID, C.CategoryName, SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Di
 
 /* 7. */
 
-
+SELECT C.CategoryID, C.CategoryName, COUNT(P.CategoryID) AS Number
+	FROM Categories AS C, Products as P
+	WHERE P.CategoryID = C.CategoryID
+    	GROUP BY C.CategoryID
 
 /* 8. */
 
