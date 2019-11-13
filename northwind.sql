@@ -40,7 +40,11 @@ SELECT E.LastName, E.FirstName, E.EmployeeID, O.ShipCountry, SUM(OD.UnitPrice * 
 
 /* 6. */
 
-
+SELECT C.CategoryID, C.CategoryName, SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS Subtotal 
+	FROM Categories AS C, `Order Details` AS OD, Products as P
+	WHERE  P.ProductID = OD.ProductID
+    AND P.CategoryID = C.CategoryID
+    	GROUP BY C.CategoryID
 
 /* 7. */
 
