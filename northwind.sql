@@ -68,7 +68,12 @@ SELECT SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS TotalPrice
 
 /* 10. */
 
-
+SELECT O.OrderID, O.OrderDate, O.RequiredDate, C.CustomerID, C.CompanyName, C.Address, C.City, C.Region, C.PostalCode, C.Country, O.ShippedDate, S.CompanyName, O.Freight, O.ShipAddress, O.ShipCity, O.ShipPostalCode, O.ShipCountry, CONCAT(E.FirstName, " ", E.LastName) AS SalesPerson
+	FROM Orders AS O, Shippers AS S, Customers AS C, Employees AS E
+    WHERE O.EmployeeID = E.EmployeeID
+    AND O.CustomerID = C.CustomerID
+    AND O.ShipVia = S.ShipperID
+    AND O.OrderID = "10248"
 
 /* 11. */
 
