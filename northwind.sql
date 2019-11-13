@@ -31,7 +31,12 @@ SELECT E.LastName, E.FirstName, E.EmployeeID, SUM(OD.UnitPrice * OD.Quantity * (
 
 /* 5. */
 
-
+SELECT E.LastName, E.FirstName, E.EmployeeID, O.ShipCountry, SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS Subtotal 
+	FROM Orders AS O, `Order Details` AS OD, Employees AS E
+	WHERE  O.OrderID = OD.OrderID
+    AND E.EmployeeID = O.EmployeeID
+    	GROUP BY E.EmployeeID, O.ShipCountry
+		ORDER BY O.ShipCountry ASC, Subtotal DESC 
 
 /* 6. */
 
