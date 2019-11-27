@@ -35,7 +35,12 @@
 
 /* 6. */
 
-
+    SELECT DISTINCT A.sid, S.name, S.surname, A.college, A.major
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+        AND (A.major LIKE "bio%"
+            OR A.major LIKE "%bio"
+            OR A.major LIKE "%bio%")
 
 /* 7. */
 
