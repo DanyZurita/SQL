@@ -72,18 +72,33 @@
         WHERE E.occu_code IS NULL
         OR E.dept_num IS NULL
 
-/* 5. */
+/* 5.! */
 
     SELECT CONCAT(E.name, " ", E.surname) AS fullname, O.name AS occupation
     FROM EMPLOYEES AS E LEFT OUTER JOIN OCCUPATIONS AS O
         ON E.occu_code = O.code
-        WHERE O.name != "MANAGER"
-        AND O.name != "EMPLOYEE"
+        WHERE (O.name != "EMPLOYEE"
+        AND O.name != "MANAGER")
         AND E.salary > 2000
 
 /* 6. */
 
-
+    /* Implicit Inner Join */
+    SELECT E.num, E.surname, E.name, M.surname AS manager, E.start_date, E.salary, E.commission, D.name, O.name
+    FROM EMPLOYEES AS E INNER JOIN OCCUPATIONS AS O ON E.occu_code = O.code
+    					INNER JOIN DEPARTMENTS AS D ON E.dept_num = D.num
+                        INNER JOIN EMPLOYEES AS M ON E.manager = M.num
+    
+    /* Implicit Inner Join */
+    SELECT E.num, E.surname, E.name, M.surname AS manager, E.start_date, E.salary, E.commission, D.name, O.name
+    FROM EMPLOYEES AS E LEFT JOIN OCCUPATIONS AS O ON E.occu_code = O.code
+    					LEFT JOIN DEPARTMENTS AS D ON E.dept_num = D.num
+                        LEFT JOIN EMPLOYEES AS M ON E.manager = M.num
 
 /* 7. */
 
+    /* Implicit Inner Join */
+    
+    
+    /* Implicit Inner Join */
+    
