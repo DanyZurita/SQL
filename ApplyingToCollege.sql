@@ -50,7 +50,9 @@
 
 /* 8. */
 
-
+    SELECT S.id, S.name, S.surname, S.mark, SUM(S.mark * (S.size_high_school/1000)) AS ScaledOver5, SUM((S.mark * (S.size_high_school/1000)) * 2) AS ScaledOver10
+    FROM STUDENTS AS S
+        GROUP BY S.id
 
 /* 9. */
 
