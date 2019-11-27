@@ -17,7 +17,13 @@
 
 /* 4. */
 
-
+    SELECT S.name, S.surname, S.mark, A.decision
+    FROM STUDENTS AS S, APPLIES AS A, COLLEGES AS C
+        WHERE A.sid = S.id
+        AND A.college = C.name
+        AND S.size_high_school < 1000
+        AND A.major = "CS"
+        AND A.college = "Stanford"
 
 /* 5. */
 
