@@ -27,7 +27,11 @@
 
 /* 5. */
 
-
+    SELECT DISTINCT C.name
+    FROM COLLEGES AS C, APPLIES AS A
+        WHERE C.name = A.college
+        AND C.enrollment > 20000
+        AND A.major = "CS"
 
 /* 6. */
 
