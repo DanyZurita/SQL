@@ -30,19 +30,56 @@
 
 /* 2. */
 
+    /* Explicit Inner Join */
+    SELECT E.surname, O.name
+	FROM EMPLOYEES AS E 
+        INNER JOIN OCCUPATIONS AS O ON E.occu_code = O.code
+        INNER JOIN DEPARTMENTS AS D ON D.num = E.dept_num
+        WHERE D.num = "20"
 
+    /* Implicit Inner Join */
+    SELECT E.surname, O.name
+	FROM EMPLOYEES AS E, OCCUPATIONS AS O, DEPARTMENTS AS D
+        WHERE E.occu_code = O.code
+        AND D.num = E.dept_num
+        AND D.num = "20"
+
+    /* Left Outer Join */
+    SELECT E.surname, O.name
+	FROM EMPLOYEES AS E 
+        LEFT OUTER JOIN OCCUPATIONS AS O ON E.occu_code = O.code
+        LEFT OUTER JOIN DEPARTMENTS AS D ON D.num = E.dept_num
+        WHERE D.num = "20"
+
+    /* Right Outer Join */
+    SELECT E.surname, O.name
+	FROM OCCUPATIONS AS O 
+        RIGHT OUTER JOIN EMPLOYEES AS E ON E.occu_code = O.code
+        RIGHT OUTER JOIN DEPARTMENTS AS D ON D.num = E.dept_num
+        WHERE D.num = "20"
 
 /* 3. */
 
-
+    SELECT CONCAT(E.name, " ", E.surname) AS fullname
+    FROM EMPLOYEES AS E
+        WHERE E.occu_code IS NULL
+        AND E.dept_num IS NULL
 
 /* 4. */
 
-
+    SELECT CONCAT(E.name, " ", E.surname) AS fullname
+    FROM EMPLOYEES AS E
+        WHERE E.occu_code IS NULL
+        OR E.dept_num IS NULL
 
 /* 5. */
 
-
+    SELECT CONCAT(E.name, " ", E.surname) AS fullname, O.name AS occupation
+    FROM EMPLOYEES AS E LEFT OUTER JOIN OCCUPATIONS AS O
+        ON E.occu_code = O.code
+        WHERE O.name != "MANAGER"
+        AND O.name != "EMPLOYEE"
+        AND E.salary > 2000
 
 /* 6. */
 
