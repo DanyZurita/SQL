@@ -44,7 +44,9 @@
 
 /* 7. */
 
-
+    SELECT S.id, S.name, S.surname, S.mark, SUM(S.mark * 2) AS Wmark
+    FROM STUDENTS AS S
+        GROUP BY S.id
 
 /* 8. */
 
