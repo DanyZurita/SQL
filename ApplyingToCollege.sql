@@ -92,7 +92,9 @@
 
 /* 14. */
 
-
+    SELECT C.state, SUM(C.enrollment)
+    FROM COLLEGES AS C
+        GROUP BY C.state
 
 /* 15. */
 
