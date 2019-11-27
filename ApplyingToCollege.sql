@@ -78,7 +78,11 @@
 
 /* 12. */
 
-
+    SELECT COUNT(M.id) AS NumberOfStudents
+    FROM (SELECT DISTINCT S.id
+            FROM STUDENTS AS S, APPLIES AS A
+                WHERE S.id = A.sid
+                AND A.college = "Cornell") AS M
 
 /* 13. */
 
