@@ -56,7 +56,11 @@
 
 /* 9. */
 
-
+    SELECT AVG(M.Marks) 
+    FROM (SELECT DISTINCT S.id, S.mark as Marks
+            FROM STUDENTS AS S, APPLIES AS A
+                WHERE S.id = A.sid
+                AND A.major = "CS") AS M
 
 /* 10. */
 
