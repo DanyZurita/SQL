@@ -56,7 +56,7 @@
 
 /* 9. */
 
-    SELECT AVG(M.Marks) 
+    SELECT AVG(M.Marks) AS AverageMark
     FROM (SELECT DISTINCT S.id, S.mark as Marks
             FROM STUDENTS AS S, APPLIES AS A
                 WHERE S.id = A.sid
@@ -64,11 +64,17 @@
 
 /* 10. */
 
-
+    SELECT MIN(M.Marks) AS MinMark
+    FROM (SELECT DISTINCT S.id, S.mark as Marks
+            FROM STUDENTS AS S, APPLIES AS A
+                WHERE S.id = A.sid
+                AND A.major = "CS") AS M
 
 /* 11. */
 
-
+    SELECT COUNT(C.enrollment) AS NumberOfColleges
+    FROM COLLEGES AS C
+        WHERE C.enrollment > 15000
 
 /* 12. */
 
