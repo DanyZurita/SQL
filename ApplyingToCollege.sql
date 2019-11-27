@@ -115,7 +115,11 @@
 
 /* 18. */
 
-
+    SELECT S.id, S.surname, S.name, COUNT(DISTINCT A.college)
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+            GROUP BY S.id
+            ORDER BY S.surname, S.name, S.id
 
 /* 19. */
 
