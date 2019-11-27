@@ -98,7 +98,10 @@
 
 /* 15. */
 
-
+    SELECT DISTINCT S.mark AS MyMark
+    FROM STUDENTS AS S
+        WHERE S.mark = (SELECT MIN(mark) FROM STUDENTS)
+        OR S.mark = (SELECT MAX(mark) FROM STUDENTS)
 
 
 /* 16. */
