@@ -92,7 +92,7 @@
 
 /* 14. */
 
-    
+    /* There is no query. */
 
 /* 15. */
 
@@ -123,11 +123,16 @@
 
 /* 19. */
 
-
+    SELECT S.surname, S.name, S.id, COUNT(DISTINCT A.college)
+    FROM STUDENTS AS S LEFT OUTER JOIN APPLIES AS A ON S.id = A.sid
+            GROUP BY S.id    
 
 /* 20. */
 
-
+    SELECT S.surname, S.name, S.id, COUNT(DISTINCT A.college)
+    FROM STUDENTS AS S LEFT OUTER JOIN APPLIES AS A ON S.id = A.sid
+            GROUP BY S.id
+            ORDER BY S.surname, S.name, S.id
 
 /* 21. */
 
