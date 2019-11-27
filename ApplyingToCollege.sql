@@ -1,16 +1,19 @@
 /* 1. */
 
+    Done.
+
+/* 2. */
+
     SELECT S.id, S.name, S.surname, S.mark
     FROM STUDENTS AS S
 	    WHERE S.mark > 3.6
 
-/* 2. */
-
-
-
 /* 3. */
 
-
+    SELECT S.name, S.surname, A.major
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE A.sid = S.id
+        ORDER BY S.surname, S.name
 
 /* 4. */
 
