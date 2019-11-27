@@ -92,25 +92,26 @@
 
 /* 14. */
 
+    
+
+/* 15. */
+
     SELECT C.state, SUM(C.enrollment)
     FROM COLLEGES AS C
         GROUP BY C.state
 
-/* 15. */
-
-    SELECT DISTINCT S.mark AS MyMark
-    FROM STUDENTS AS S
-        WHERE S.mark = (SELECT MIN(mark) FROM STUDENTS)
-        OR S.mark = (SELECT MAX(mark) FROM STUDENTS)
-
 
 /* 16. */
 
-
+    SELECT DISTINCT mark
+    FROM STUDENTS
+        WHERE mark = (SELECT MIN(mark) FROM STUDENTS)
+        OR mark = (SELECT MAX(mark) FROM STUDENTS)
 
 /* 17. */
 
-
+    SELECT MAX(mark) - MIN(mark)
+    FROM STUDENTS
 
 /* 18. */
 
