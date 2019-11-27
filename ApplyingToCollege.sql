@@ -86,7 +86,9 @@
 
 /* 13. */
 
-
+    SELECT A.college, COUNT(*)
+        FROM APPLIES AS A
+        GROUP BY A.college
 
 /* 14. */
 
