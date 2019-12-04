@@ -127,7 +127,7 @@
     /* Its an error and a mistake. Adding more than 40 chars in a varchar(40). */
     INSERT INTO T (id, s, si) VALUES (4, 'Smallint overflow for 32769?', 32769);
     SHOW ERRORS;
-    SHOW WARNINGS
+    SHOW WARNINGS;
     /* Its not an error/warning. This shoud give and error but I had int(5). */
 
 /* 17. */
@@ -141,14 +141,18 @@
     START TRANSACTION
     INSERT INTO T (id,s) VALUES (8, 'killing test')
 
-    /* From other prompt: */
+    /* From other prompt:
     ssh alumne@192.168.56.101
     ps -el | grep mysql
-    /* Tracking the mysql service. In my case the 3rd value was 3104. */
+    */
+    /* Tracking the mysql service. In my case the 3rd value was 3104.
     kill -9 3104
+    */
     /* Kills the process of mysql */
 
+    /*
     Killed
     mysql -h localhost -u alumne -palualualu TestDB
-    select * from T
+    */
+    SELECT * FROM T
     /* The data inserted is not registered. */
