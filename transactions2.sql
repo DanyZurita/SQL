@@ -138,4 +138,17 @@
 
 /* 18. */
 
-    
+    START TRANSACTION
+    INSERT INTO T (id,s) VALUES (8, 'killing test')
+
+    /* From other prompt: */
+    ssh alumne@192.168.56.101
+    ps -el | grep mysql
+    /* Tracking the mysql service. In my case the 3rd value was 3104. */
+    kill -9 3104
+    /* Kills the process of mysql */
+
+    Killed
+    mysql -h localhost -u alumne -palualualu TestDB
+    select * from T
+    /* The data inserted is not registered. */
