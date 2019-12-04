@@ -28,10 +28,12 @@
 /* 7. */
 
     INSERT INTO T (id, s) VALUES (1, 'first'), (2, 'second'), (3, 'third');
+    SELECT * FROM T
 
 /* 8. */
 
     ROLLBACK
+    SELECT * FROM T
     /* No, because the DDL sentences do not count for a rollback. */
 
 /* 9. */
@@ -155,4 +157,4 @@
     mysql -h localhost -u alumne -palualualu TestDB
     */
     SELECT * FROM T
-    /* The data inserted is not registered. */
+    /* The data inserted is not registered (rollbacked by mysql killed). */
