@@ -136,7 +136,13 @@
 
 /* 21. */
 
+    SELECT S.college
+    FROM (SELECT A.college, COUNT(A.major) AS COUNTS FROM APPLIES AS A GROUP BY A.college) AS S
+        WHERE S.COUNTS < 5
 
+    SELECT S.college
+    FROM (SELECT A.college, COUNT(DISTINCT A.major) AS COUNTS FROM APPLIES AS A GROUP BY A.college) AS S
+        WHERE S.COUNTS < 5
 
 /* 22. */
 
