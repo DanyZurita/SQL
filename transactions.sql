@@ -25,7 +25,7 @@
 /* 6. */
 
     SELECT AVG(E.comission) FROM EMPLOYEES AS E
-    /* Yes. */
+    /* Yes, 20% higher. (618.0000) */
 
 /* 7. */
 
@@ -42,6 +42,7 @@
 
 /* 10. */
 
+    START TRANSACTION
     SAVEPOINT SPINCCOMMISSION
 
 /* 11. */
@@ -51,7 +52,7 @@
 /* 12. */
 
     SELECT AVG(E.comission) FROM EMPLOYEES AS E
-    /* Yes. */
+    /* Yes, 20% higher. (618.0000) */
 
 /* 13. */
 
