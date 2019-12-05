@@ -296,7 +296,11 @@
 
 /* 38. */
 
-
+    SELECT S.id, S.name, S.surname, S.size_high_school
+    FROM STUDENTS AS S
+        WHERE EXISTS (SELECT SS.size_high_school
+                     FROM STUDENTS AS SS
+                     	WHERE SS.size_high_school < S.size_high_school)
 
 /* 39. */
 
