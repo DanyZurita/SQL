@@ -120,24 +120,124 @@ FROM (SELECT T.tid, T.tname, count(*) AS NMatchesLocal
 
 /* 8. */
 
+    SELECT A.tname AS TeamName, B.Points, B.Won, B.Drawn, B.Lost, B.GF, B.GA, B.GD
+    FROM
+    (SELECT `Team`, SUM(`Points`) As `Points`, SUM(`Won`) As `Won`, SUM(`Drawn`) As `Drawn`, SUM(`Lost`) As `Lost`
+                    , SUM(`GF`) As `GF`, SUM(`GA`) As `GA`, (SUM(`GF`) - SUM(`GA`)) AS `GD` FROM
+                    (
+                        (SELECT `mtidhome` AS `Team` 
+                        , SUM(CASE 
+                            WHEN `mgoalshome` > `mgoalsaway` THEN 3
+                            WHEN `mgoalshome` = `mgoalsaway` THEN 1
+                            ELSE 0
+                        END) AS `Points`
+                        , SUM(CASE 
+                            WHEN `mgoalshome` > `mgoalsaway` THEN 1
+                            ELSE 0
+                        END) AS `Won`
+                        , SUM(CASE 
+                            WHEN `mgoalshome` = `mgoalsaway` THEN 1
+                            ELSE 0
+                        END) AS `Drawn`
+                        , SUM(CASE 
+                            WHEN `mgoalshome` < `mgoalsaway` THEN 1
+                            ELSE 0
+                        END) AS `Lost`
+                        , SUM(`mgoalshome`) AS `GF`
+                        , SUM(`mgoalsaway`) AS `GA`
+                    FROM MATCHES
+                    WHERE mdate BETWEEN '2016-11-01' AND '2017-02-28'
+                    GROUP BY `mtidhome`)
+                    UNION ALL
+                        (SELECT `mtidaway` AS `Team`
+                        , SUM(CASE 
+                            WHEN `mgoalsaway` > `mgoalshome` THEN 3
+                            WHEN `mgoalshome` = `mgoalsaway` THEN 1
+                            ELSE 0
+                        END) AS `Points`
+                        , SUM(CASE 
+                            WHEN `mgoalsaway` > `mgoalshome` THEN 1
+                            ELSE 0
+                        END) AS `Won`
+                        , SUM(CASE 
+                            WHEN `mgoalsaway` = `mgoalshome` THEN 1
+                            ELSE 0
+                        END) AS `Drawn`
+                        , SUM(CASE 
+                            WHEN `mgoalsaway` < `mgoalshome` THEN 1
+                            ELSE 0
+                        END) AS `Lost`
+                        , SUM(`mgoalsaway`) AS `GF`
+                        , SUM(`mgoalshome`) AS `GA`
+                    FROM MATCHES
+                    WHERE mdate BETWEEN '2016-11-01' AND '2017-02-28'
+                    GROUP BY `mtidaway`)
+                    ) `tmpTable`
+                    GROUP BY `Team`) AS B, TEAMS AS A 
+    WHERE A.tid = B.Team
+    ORDER BY B.Points DESC, B.GD DESC;
 
 
 /* 9. */
 
-
+    DELETE FROM TEAMS WHERE tid=1;
+    /* If deleted, the references will be null and lose integrity. */
 
 /* 10. */
 
+    ALTER TABLE `MATCHES` DROP FOREIGN KEY `mtidhome_FK`;
+    ALTER TABLE `MATCHES` DROP FOREIGN KEY `mtidaway_FK`;
 
+    ALTER TABLE `MATCHES` ADD CONSTRAINT `mtidhome_FK` FOREIGN KEY (`mtidhome`) REFERENCES `TEAMS` (`tid`) ON DELETE RESTRICT ON UPDATE CASCADE;
+    ALTER TABLE `MATCHES` ADD CONSTRAINT `mtidaway_FK` FOREIGN KEY (`mtidaway`) REFERENCES `TEAMS` (`tid`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 /* 11. */
 
-
+    DELETE FROM TEAMS WHERE tid=2;
 
 /* 12. */
 
-
+    /* Disable */
+    SET foreign_key_checks = 0;
+    /* Enable. */
+    SET foreign_key_checks = 1;
 
 /* 13. */
 
+    /* Adding a new field to TEAMS. */
+    ALTER TABLE TEAMS ADD COLUMN t_id VARCHAR(3) AFTER tid;
+    ALTER TABLE MATCHES ADD COLUMN mt_idhome VARCHAR(3) AFTER mtidhome;
+    ALTER TABLE MATCHES ADD COLUMN mt_idaway VARCHAR(3) AFTER mtidaway;
+    UPDATE TEAMS SET t_id = 'ARS' WHERE tid = 1;
+    UPDATE TEAMS SET t_id = 'CHE' WHERE tid = 2;
+    UPDATE TEAMS SET t_id = 'LIV' WHERE tid = 3;
+    UPDATE TEAMS SET t_id = 'MCI' WHERE tid = 4;
+    UPDATE TEAMS SET t_id = 'MUN' WHERE tid = 5;
+    UPDATE TEAMS SET t_id = 'TOT' WHERE tid = 6;
+    UPDATE MATCHES SET mt_idhome = 'ARS' WHERE mtidhome = 1;
+    UPDATE MATCHES SET mt_idhome = 'CHE' WHERE mtidhome = 2;
+    UPDATE MATCHES SET mt_idhome = 'LIV' WHERE mtidhome = 3;
+    UPDATE MATCHES SET mt_idhome = 'MCI' WHERE mtidhome = 4;
+    UPDATE MATCHES SET mt_idhome = 'MUN' WHERE mtidhome = 5;
+    UPDATE MATCHES SET mt_idhome = 'TOT' WHERE mtidhome = 6;
+    UPDATE MATCHES SET mt_idaway = 'ARS' WHERE mtidaway = 1;
+    UPDATE MATCHES SET mt_idaway = 'CHE' WHERE mtidaway = 2;
+    UPDATE MATCHES SET mt_idaway = 'LIV' WHERE mtidaway = 3;
+    UPDATE MATCHES SET mt_idaway = 'MCI' WHERE mtidaway = 4;
+    UPDATE MATCHES SET mt_idaway = 'MUN' WHERE mtidaway = 5;
+    UPDATE MATCHES SET mt_idaway = 'TOT' WHERE mtidaway = 6;
 
+    /* Deleting PK and FK constrains. */
+    ALTER TABLE `MATCHES` DROP FOREIGN KEY `mtidhome_FK`;
+    ALTER TABLE `MATCHES` DROP FOREIGN KEY `mtidaway_FK`;
+    ALTER TABLE `TEAMS` DROP PRIMARY KEY;
+
+    /* Creating PK and Fk for new fields */
+    ALTER TABLE `MATCHES` DROP FOREIGN KEY `mtidhome_FK`;
+    ALTER TABLE `MATCHES` DROP FOREIGN KEY `mtidaway_FK`;
+    ALTER TABLE `TEAMS` DROP PRIMARY KEY;
+
+    /* Deleting the new columns. */
+    ALTER TABLE `TEAMS` DROP COLUMN `tid`;
+    ALTER TABLE `MATCHES` DROP COLUMN `mtidhome`;
+    ALTER TABLE `MATCHES` DROP COLUMN `mtidaway`;
