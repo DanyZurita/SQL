@@ -179,13 +179,21 @@
     FROM STUDENTS AS S, APPLIES AS A
         WHERE S.id = A.sid
         AND A.major = "CS"
+        ORDER BY S.surname, S.name, S.id
+
+/* 25. */
+
+    SELECT DISTINCT S.id, S.name, S.surname
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+        AND A.major = "CS"
         AND S.id NOT IN (SELECT DISTINCT S.id
                         FROM STUDENTS AS S, APPLIES AS A
                             WHERE S.id = A.sid
                             AND A.major = "EE")
         ORDER BY S.surname, S.name, S.id
 
-/* 25. */
+/* 26. */
 
     SELECT C.name, C.state
     FROM COLLEGES AS C
@@ -194,15 +202,14 @@
                         GROUP BY CC.state
                         HAVING COUNT(CC.name) > 1)
 
-
-/* 26. */
+/* 27. */
 
     SELECT C.name
     FROM COLLEGES AS C
         WHERE C.enrollment = (SELECT MAX(CC.enrollment)
                         FROM COLLEGES AS CC)
 
-/* 27. */
+/* 28. */
 
     SELECT S.name, S.surname, S.mark
     FROM STUDENTS AS S
@@ -210,7 +217,7 @@
                         FROM STUDENTS AS SS
                                 WHERE SS.mark > S.mark)
 
-/* 28. */
+/* 29. */
 
     SELECT S.name, S.surname, S.mark
     FROM STUDENTS AS S
@@ -218,17 +225,20 @@
                         FROM STUDENTS AS SS
                                 WHERE SS.mark > S.mark)
 
-/* 29. */
-
-    
-
 /* 30. */
 
-
+    SELECT C.name
+    FROM COLLEGES AS C
+        WHERE C.enrollment > ALL (SELECT CC.enrollment
+                        FROM COLLEGES AS CC)
 
 /* 31. */
 
-
+    SELECT C.name
+    FROM COLLEGES AS C
+        WHERE NOT C.enrollment <= ANY (SELECT CC.enrollment
+                        FROM COLLEGES AS CC
+                            WHERE CC.name <> C.name)
 
 /* 32. */
 
