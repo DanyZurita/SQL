@@ -257,11 +257,21 @@
 
 /* 34. */
 
-    
+    SELECT S.id, S.name, S.surname, S.mark, S.id, SS.name, SS.surname, SS.mark
+    FROM STUDENTS AS S, STUDENTS AS SS
+        WHERE S.mark = SS.mark
+        AND S.id <> SS.id
+        AND S.id < SS.id
+        ORDER BY S.mark DESC, S.surname, S.name ASC
 
 /* 35. */
 
-
+    SELECT * FROM (SELECT C.name AS cname 
+                    FROM COLLEGES AS C
+                    UNION 
+                    SELECT CONCAT(S.name, " ", S.surname) AS sname
+                    FROM STUDENTS AS S) AS SS
+                    ORDER BY SS.cname
 
 
 /* 36. */
