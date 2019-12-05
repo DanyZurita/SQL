@@ -136,46 +136,91 @@
 
 /* 21. */
 
-    SELECT S.college
-    FROM (SELECT A.college, COUNT(A.major) AS COUNTS FROM APPLIES AS A GROUP BY A.college) AS S
-        WHERE S.COUNTS < 5
+    SELECT college
+    FROM APPLIES
+    	GROUP BY college
+        HAVING COUNT(*) < 5
+        ORDER BY college
 
-    SELECT S.college
-    FROM (SELECT A.college, COUNT(DISTINCT A.major) AS COUNTS FROM APPLIES AS A GROUP BY A.college) AS S
-        WHERE S.COUNTS < 5
+    SELECT college
+    FROM APPLIES
+    	GROUP BY college
+        HAVING COUNT(DISTINCT sid) < 5
+        ORDER BY college
 
 /* 22. */
 
-
+    SELECT DISTINCT college 
+    FROM APPLIES AS A
+        WHERE 5 > (SELECT COUNT(*)
+                FROM APPLIES AS AA
+                        WHERE AA.college = A.college)
+                        ORDER BY college
+    
+    SELECT DISTINCT college 
+    FROM APPLIES AS A
+        WHERE 5 > (SELECT COUNT(DISTINCT sid)
+                FROM APPLIES AS AA
+                        WHERE AA.college = A.college)
+                        ORDER BY college
 
 /* 23. */
 
-
+    SELECT A.major
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+        GROUP BY A.major
+            HAVING max(S.mark) < (SELECT avg(mark)
+                                FROM STUDENTS)
 
 /* 24. */
 
-
+    SELECT DISTINCT S.id, S.name, S.surname
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+        AND A.major = "CS"
+        AND S.id NOT IN (SELECT DISTINCT S.id
+                        FROM STUDENTS AS S, APPLIES AS A
+                            WHERE S.id = A.sid
+                            AND A.major = "EE")
+        ORDER BY S.surname, S.name, S.id
 
 /* 25. */
 
-
+    SELECT C.name, C.state
+    FROM COLLEGES AS C
+        WHERE C.state IN (SELECT CC.state
+                        FROM COLLEGES AS CC
+                        GROUP BY CC.state
+                        HAVING COUNT(CC.name) > 1)
 
 
 /* 26. */
 
-
+    SELECT C.name
+    FROM COLLEGES AS C
+        WHERE C.enrollment = (SELECT MAX(CC.enrollment)
+                        FROM COLLEGES AS CC)
 
 /* 27. */
 
-
+    SELECT S.name, S.surname, S.mark
+    FROM STUDENTS AS S
+        WHERE NOT EXISTS (SELECT SS.name, SS.surname, SS.mark
+                        FROM STUDENTS AS SS
+                                WHERE SS.mark > S.mark)
 
 /* 28. */
 
-
+    SELECT S.name, S.surname, S.mark
+    FROM STUDENTS AS S
+        WHERE S.mark >= ALL (SELECT SS.mark
+                        FROM STUDENTS AS SS
+                                WHERE SS.mark > S.mark)
 
 /* 29. */
 
-
+    
 
 /* 30. */
 
