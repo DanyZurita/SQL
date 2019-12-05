@@ -250,11 +250,14 @@
 
 /* 33. */
 
-
+    SELECT S.id, S.name, S.surname, A.college, A.major, A.decision
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+        ORDER BY S.surname, S.name
 
 /* 34. */
 
-
+    
 
 /* 35. */
 
