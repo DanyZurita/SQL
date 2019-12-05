@@ -285,7 +285,14 @@
 
 /* 37. */
 
-
+    SELECT DISTINCT S.id
+    FROM STUDENTS AS S, APPLIES AS A
+        WHERE S.id = A.sid
+        AND A.major = "CS"
+        AND S.id NOT IN (SELECT S.id
+                        FROM STUDENTS AS S, APPLIES AS A
+                            WHERE S.id = A.sid
+                            AND A.major = "EE")
 
 /* 38. */
 
