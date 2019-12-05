@@ -315,7 +315,7 @@
 
 /* 40. */
 
-
+    INSERT INTO COLLEGIES VALUES ('UIB', 'IB', 1500)
 
 /* 41. */
 
