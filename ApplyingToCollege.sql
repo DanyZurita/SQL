@@ -304,7 +304,14 @@
 
 /* 39. */
 
-
+    SELECT S.id
+    FROM STUDENTS AS S
+        WHERE S.id = ANY (SELECT A.sid
+                            FROM APPLIES AS A
+                            WHERE A.major = "CS")
+        AND NOT S.id = ANY (SELECT AA.sid 
+                            FROM APPLIES AS AA
+                            WHERE AA.major = "EE")
 
 /* 40. */
 
