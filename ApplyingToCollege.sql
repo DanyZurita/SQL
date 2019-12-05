@@ -276,7 +276,12 @@
 
 /* 36. */
 
-
+    SELECT DISTINCT A.sid 
+    FROM APPLIES AS A
+        WHERE A.major = "CS"
+        AND A.sid IN (SELECT AA.sid 
+                    FROM APPLIES AS AA
+                    WHERE AA.major = "EE")
 
 /* 37. */
 
