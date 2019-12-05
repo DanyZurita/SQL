@@ -222,27 +222,31 @@
     SELECT S.name, S.surname, S.mark
     FROM STUDENTS AS S
         WHERE S.mark >= ALL (SELECT SS.mark
-                        FROM STUDENTS AS SS
-                                WHERE SS.mark > S.mark)
+                            FROM STUDENTS AS SS
+                                    WHERE SS.mark > S.mark)
 
 /* 30. */
 
     SELECT C.name
     FROM COLLEGES AS C
         WHERE C.enrollment > ALL (SELECT CC.enrollment
-                        FROM COLLEGES AS CC)
+                                    FROM COLLEGES AS CC)
 
 /* 31. */
 
     SELECT C.name
     FROM COLLEGES AS C
         WHERE NOT C.enrollment <= ANY (SELECT CC.enrollment
-                        FROM COLLEGES AS CC
-                            WHERE CC.name <> C.name)
+                                        FROM COLLEGES AS CC
+                                            WHERE CC.name <> C.name)
 
 /* 32. */
 
-
+    SELECT S.id, S.name, S.surname, S.size_high_school
+    FROM STUDENTS AS S
+        WHERE S.size_high_school > ANY (SELECT SS.size_high_school
+                                        FROM STUDENTS AS SS)
+                                        ORDER BY S.surname, S.name, S.id
 
 /* 33. */
 
