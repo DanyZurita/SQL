@@ -2,7 +2,7 @@
 
     /* A. */
 
-
+    ALTER TABLE BRANCHES DROP FOREIGN KEY branches_fk;
 
     /* B. */
 
