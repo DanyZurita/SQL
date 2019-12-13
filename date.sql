@@ -1,15 +1,14 @@
 /* 1. */
 
-    Select LAST_DAY('2019-12-01');
+    SELECT LAST_DAY(NOW());
 
 /* 2. */
 
-   
+    SELECT LAST_DAY(DATE_SUB(NOW(), INTERVAL 3 MONTH)) AS My Day;
 
 /* 3. */
 
     
-
 
 /* 4. */
 
