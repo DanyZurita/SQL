@@ -49,11 +49,11 @@
 
     /* C. */
 
-    
+    UPDATE AGREEMENTS AS A INNER JOIN (SELECT ID, NUMBER FROM PHONES) AS P ON A.ID_PHONE = P.ID SET A.ID_PHONE = P.NUMBER;
 
     /* D. */
 
-
+    
 
     /* E. */
 
