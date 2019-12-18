@@ -115,11 +115,11 @@
 
     /* L. */
 
-
+    ALTER TABLE SERVICES DROP COLUMN ID_SERV_TYPE;
 
     /* M. */
 
-
+    
 
     /* N. */
 
