@@ -95,11 +95,11 @@
 
     /* G. */
 
-    
+    ALTER TABLE SERVICES DROP FOREIGN KEY services_fk;
 
     /* H. */
 
-
+    
 
     /* I. */
 
