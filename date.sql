@@ -16,23 +16,23 @@
 
 /* 5. */
 
-    SELECT CONVERT_TZ(NOW(), 'GMT', 'Europe/Madrid') AS DateMadrid, CONVERT_TZ(NOW(), 'UTC', 'America/Panama') AS DatePanama;
+    /* Skipped. */
 
 /* 6. */
 
-    SELECT CONVERT_TZ(NOW(), 'GMT', 'Europe/Madrid') AS DateMadrid, CONVERT_TZ(NOW(), 'UTC', 'Australia/Sydney') AS DateSydney;
+    SELECT CONVERT_TZ(NOW(), 'GMT', 'Europe/Madrid') AS DateMadrid, CONVERT_TZ(NOW(), 'UTC', 'America/Panama') AS DatePanama;
 
 /* 7. */
 
-    SELECT NOW() AS Today, DATE_SUB(DATE_SUB(NOW(), INTERVAL 3 HOUR), INTERVAL 25 MINUTE) AS MyTimestamp;
+    SELECT CONVERT_TZ(NOW(), 'GMT', 'Europe/Madrid') AS DateMadrid, CONVERT_TZ(NOW(), 'UTC', 'Australia/Sydney') AS DateSydney;
 
 /* 8. */
 
-    
+    SELECT NOW() AS Today, DATE_SUB(DATE_SUB(NOW(), INTERVAL 3 HOUR), INTERVAL 25 MINUTE) AS MyTimestamp;
 
 /* 9. */
 
-
+    SELECT NOW() AS Today, DAYOFYEAR(NOW())
 
 /* 10. */
 
