@@ -36,7 +36,8 @@
 
 /* 10. */
 
-
+    /* Yes */
+     SELECT STR_TO_DATE('Wednesday, December 18, 2019', '%W, %M %e, %Y') AS Today;
 
 /* 11. */
 
