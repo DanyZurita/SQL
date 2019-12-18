@@ -42,5 +42,5 @@
 
 /* 7. */
 
-    INSERT INTO V_EMPLOYEES VALUES (999, 'GOMEZ', 'ANTONIO', NULL, '2019-01-01', 1000);
+    INSERT INTO V_EMPLOYEES VALUES (1, 'ZURITA', 'DANY', NULL, '2019-10-01', 10000);
     /* No, the view is a not insertable-into. */
