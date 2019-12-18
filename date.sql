@@ -8,11 +8,11 @@
 
 /* 3. */
 
-    
+    SELECT DATE_FORMAT(LAST_DAY(DATE_SUB(NOW(), INTERVAL 3 MONTH)), '%M %d, %y') AS MyDay;
 
 /* 4. */
 
-
+    
 
 /* 5. */
 
