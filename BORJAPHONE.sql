@@ -45,11 +45,11 @@
 
     /* B. */
 
-    
+    ALTER TABLE PHONE_CALLS DROP FOREIGN KEY phone_calls_fk;
 
     /* C. */
 
-
+    
 
     /* D. */
 
