@@ -41,11 +41,11 @@
 
     /* A. */
 
-    
+    ALTER TABLE AGREEMENTS DROP FOREIGN KEY agreements_fk;
 
     /* B. */
 
-
+    
 
     /* C. */
 
