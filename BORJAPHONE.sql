@@ -79,11 +79,11 @@
 
     /* C. */
 
-
+    ALTER TABLE INVOICE_LINES DROP FOREIGN KEY invoices_lines_fk_2;
 
     /* D. */
 
-
+    
 
     /* E. */
 
