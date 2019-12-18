@@ -6,11 +6,11 @@
 
     /* B. */
 
-    ALTER TABLE BRANCHES MODIFY ID char(5);
+    ALTER TABLE BANKS MODIFY ID char(5);
 
     /* C. */
 
-
+    ALTER TABLE BRANCHES MODIFY ID_BANK char(5);
 
     /* D. */
 
