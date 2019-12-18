@@ -91,11 +91,11 @@
 
     /* F. */
 
-    
+    ALTER TABLE SERVICES ADD PRIMARY KEY (CODE);
 
     /* G. */
 
-
+    
 
     /* H. */
 
