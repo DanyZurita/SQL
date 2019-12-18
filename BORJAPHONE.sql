@@ -83,7 +83,7 @@
 
     /* D. */
 
-    
+    ALTER TABLE INVOICE_LINES DROP COLUMN ID_SERVICE;
 
     /* E. */
 
