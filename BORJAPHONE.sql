@@ -107,11 +107,11 @@
 
     /* J. */
 
-    
+    ALTER TABLE SERVICE_TYPES DROP COLUMN ID;
 
     /* K. */
 
-
+    ALTER TABLE SERVICE_TYPES ADD PRIMARY KEY (CODE);
 
     /* L. */
 
