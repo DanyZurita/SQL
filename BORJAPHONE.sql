@@ -53,11 +53,11 @@
 
     /* D. */
 
-    
+    ALTER TABLE AGREEMENTS CHANGE COLUMN ID_PHONE PHONE int(11);
 
     /* E. */
 
-
+    
 
     /* F. */
 
