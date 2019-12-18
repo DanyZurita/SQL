@@ -14,11 +14,12 @@
 
     /* D. */
 
-
+    ALTER TABLE BANKS DROP PRIMARY KEY;
+    ALTER TABLE BANKS ADD PRIMARY KEY (CODE);
 
     /* E. */
 
-
+    
 
     /* F. */
 
