@@ -36,8 +36,11 @@
 
 /* 6. */
 
-    
+    UPDATE V_EMPLOYEES SET surname = 'GONZALES'
+        WHERE num = 9999;
+    /* Yes, changed in the view and in the employees table. */
 
 /* 7. */
 
-
+    INSERT INTO V_EMPLOYEES VALUES (999, 'GOMEZ', 'ANTONIO', NULL, '2019-01-01', 1000);
+    /* No, the view is a not insertable-into. */
