@@ -23,11 +23,11 @@
 
     /* F. */
 
-    
+    UPDATE BRANCHES AS B INNER JOIN (SELECT ID, CODE FROM BANKS) AS BK ON B.CODE_BANK = BK.ID SET B.CODE_BANK = BK.CODE;
 
     /* G. */
 
-
+    
 
     /* H. */
 
