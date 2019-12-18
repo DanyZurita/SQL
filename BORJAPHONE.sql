@@ -61,11 +61,11 @@
 
     /* F. */
 
-    
+    ALTER TABLE PHONE_CALLS CHANGE COLUMN ID_PHONE PHONE int(9);
 
     /* G. */
 
-
+    
 
 /* 3. */
 
