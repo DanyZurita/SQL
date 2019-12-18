@@ -29,11 +29,14 @@
 
 /* 5. */
 
+    CREATE VIEW V_EMPLOYEES_FULL AS
+        SELECT V1.num, V1.surname, V1.name, V1.manager, V1.start_date, V1.salary,V1.dept_name, V1.occu_name , V2.surname AS man_surname,V2.name AS man_name
+        FROM V_EMPLOYEES AS V1 LEFT OUTER JOIN V_EMPLOYEES AS V2 ON V1.manager = V2.num;
 
 
 /* 6. */
 
-
+    
 
 /* 7. */
 
