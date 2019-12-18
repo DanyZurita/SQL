@@ -19,11 +19,11 @@
 
     /* E. */
 
-    
+    ALTER TABLE BRANCHES CHANGE COLUMN ID_BANK CODE_BANK char(5);
 
     /* F. */
 
-
+    
 
     /* G. */
 
