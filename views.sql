@@ -22,7 +22,10 @@
 
 /* 4. */
 
-    
+    CREATE VIEW V_EMPLOYEES AS
+        SELECT E.num, E.surname, E.name, E.manager, E.start_date, E.salary, D.name AS dept_name, O.name AS occu_name
+        FROM EMPLOYEES AS E LEFT OUTER JOIN DEPARTMENTS AS D ON D.num = E.dept_num
+                            LEFT OUTER JOIN OCCUPATIONS AS O ON O.code = E.occu_code;
 
 /* 5. */
 
