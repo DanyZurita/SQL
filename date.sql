@@ -16,19 +16,19 @@
 
 /* 5. */
 
-    
+    SELECT CONVERT_TZ(NOW(), 'GMT', 'Europe/Madrid') AS DateMadrid, CONVERT_TZ(NOW(), 'UTC', 'America/Panama') AS DatePanama;
 
 /* 6. */
 
-
+    SELECT CONVERT_TZ(NOW(), 'GMT', 'Europe/Madrid') AS DateMadrid, CONVERT_TZ(NOW(), 'UTC', 'Australia/Sydney') AS DateSydney;
 
 /* 7. */
 
-
+    SELECT NOW() AS Today, DATE_SUB(DATE_SUB(NOW(), INTERVAL 3 HOUR), INTERVAL 25 MINUTE) AS MyTimestamp;
 
 /* 8. */
 
-
+    
 
 /* 9. */
 
