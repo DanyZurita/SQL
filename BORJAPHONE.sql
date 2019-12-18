@@ -27,11 +27,11 @@
 
     /* G. */
 
-    
+    ALTER TABLE BRANCHES ADD CONSTRAINT fk_bank_code FOREIGN KEY (CODE_BANK) REFERENCES BANKS(CODE) ON UPDATE CASCADE ON DELETE CASCADE;
 
     /* H. */
 
-
+    
 
     /* I. */
 
