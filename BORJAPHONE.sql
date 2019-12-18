@@ -87,11 +87,11 @@
 
     /* E. */
 
-
+    ALTER TABLE SERVICES DROP COLUMN ID;
 
     /* F. */
 
-
+    
 
     /* G. */
 
