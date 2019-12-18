@@ -99,15 +99,15 @@
 
     /* H. */
 
-    
+    ALTER TABLE SERVICES ADD COLUMN CODE_SERVICE char(5);
 
     /* I. */
 
-
+    UPDATE SERVICES AS S INNER JOIN (SELECT ID, CODE FROM SERVICE_TYPES) AS ST ON S.ID_SERV_TYPE = ST.ID SET S.CODE_SERVICE = ST.CODE;
 
     /* J. */
 
-
+    
 
     /* K. */
 
