@@ -71,7 +71,7 @@
 
     /* A. */
 
-    
+    ALTER TABLE INVOICE_LINES ADD COLUMN CODE_SERVICE char(5);
 
     /* B. */
 
