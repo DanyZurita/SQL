@@ -1,6 +1,6 @@
 /* 1. */
 
-    
+    CREATE USER 'dany'@'localhost' IDENTIFIED BY 'alualualu';
 
 /* 2. */
 
