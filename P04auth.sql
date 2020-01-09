@@ -20,7 +20,8 @@
 
 /* 5. */
 
-    
+    GRANT UPDATE, SELECT ON SQL1NORMALAUTH.EMPLOYEES TO 'dany'@'localhost';
+    GRANT SELECT ON SQL1NORMALAUTH.DEPARTMENTS TO 'dany'@'localhost';
 
 /* 6. */
 
