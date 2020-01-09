@@ -4,7 +4,7 @@
 
 /* 2. */
 
-    
+    GRANT DELETE ON SQL1NORMALAUTH.EMPLOYEES TO 'dany'@'localhost';
 
 /* 3. */
 
