@@ -25,7 +25,8 @@
 
 /* 6. */
 
-    
+    GRANT UPDATE, SELECT ON SQL1NORMALAUTH.EMPLOYEES TO 'dany'@'%';
+    GRANT SELECT ON SQL1NORMALAUTH.DEPARTMENTS TO 'dany'@'%';
 
 /* 7. */
 
