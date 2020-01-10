@@ -30,7 +30,16 @@
 
 /* 7. */
 
+    CREATE VIEW V_DANY AS 
+        SELECT * 
+        FROM SQL1NORMALAUTH.EMPLOYEES AS E
+            WHERE E.salary < 1500
+            AND E.dept_num IN (SELECT * 
+                                FROM SQL1NORMALAUTH.EMPLOYEES AS EE
+                                GROUP BY EE.dept_num
+                                HAVING COUNT(*) > 7);
     
+    GRANT SELECT ON SQL1NORMALAUTH.V_DANY TO 'dany'@'localhost';           
 
 /* 8. */
 
