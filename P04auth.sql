@@ -43,11 +43,12 @@
 
 /* 8. */
 
-    
+    GRANT DELETE ON SQL1NORMALAUTH.V_DANY TO 'dany'@'localhost';
+    DELETE FROM SQL1NORMALAUTH.V_DANY WHERE num=1000;
 
 /* 9. */
 
-    
+    ALTER USER 'dany'@'%' ACCOUNT LOCK;
 
 /* 10. */
 
