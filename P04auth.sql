@@ -48,7 +48,7 @@
 
 /* 9. */
 
-    ALTER USER 'dany'@'%' ACCOUNT LOCK;
+    ALTER USER 'dany'@'localhost' ACCOUNT LOCK;
 
 /* 10. */
 
