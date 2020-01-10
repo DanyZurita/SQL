@@ -52,4 +52,4 @@
 
 /* 10. */
 
-    
+    CREATE USER 'pgracia'@'%' IDENTIFIED BY 'alualualu';
