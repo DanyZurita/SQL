@@ -11,7 +11,9 @@
 
 /* 3. */
 
-    
+    SELECT t_name AS Tournament, t_type AS Type, DATEDIFF(t_end_date, t_start_date) AS Lenght      
+    FROM TOURNAMENTS 
+        WHERE  DATEDIFF(t_end_date, t_start_date) > 7;
 
 /* 4. */
 
@@ -19,7 +21,7 @@
 
 /* 5. */
 
-    
+
 
 /* 6. */
 
