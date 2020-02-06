@@ -42,7 +42,7 @@
 
 /* 7. */          
 
-
+    select * from customers where firstname ~~* '''GUEST''';
 
 /* 8. */
 
