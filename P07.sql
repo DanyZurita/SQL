@@ -65,7 +65,8 @@
 
 /* 12. */
 
-    
+    select id, name, case when maintenance_cost > 150::money then 'expensive' else 'cheap' end as chep_or_not, cust_cost, maintenance_cost 
+    from facilities;
 
 /* 13. */
 
