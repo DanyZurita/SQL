@@ -61,7 +61,7 @@
 
 /* 11. */
 
-    
+    select * from facilities where id = 1 or id = 5;
 
 /* 12. */
 
