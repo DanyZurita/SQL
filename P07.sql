@@ -8,15 +8,29 @@
 
 /* 2. */
 
-    /* Drawing of the entity relational model */
+    /* postgres@DBVMPC:~$ createdb bookings -O booking
+    postgres=# create user booking with password 'alualualu'; */
 
 /* 3. */
 
-    /* postgres@DBVMPC:~$ createdb bookings -O booking */
+    create table customers (id int, lastname text, firstname text, address text, zipcode int, phonenumber int, recommended_id int, registerdate date);
+    create table bookings (fac_id int, cust_id int, start_datetime date, nhours int);
+    create table facilities (id int, name text, cust_cost money, guest_cost money, purchase_cost money, maintenance_cost money);
+    alter table bookings owner to booking;
+    alter table booking owner to booking;
+    alter table facilities owner to booking;
+    alter table bookings add primary key (fac_id, cust_id, start_datetime);
+    alter table customers add primary key (id);
+    alter table facilities add primary key (id);
+    alter table bookings add foreign key (fac_id) references facilities (id);
+    alter table bookings add foreign key (cust_id) references customers (id);
+
 
 /* 4. */
 
-    
+    copy facilities from '/home/alumne/facilities.csv' DELIMITER ';' QUOTE '''' CSV HEADER NULL '''';
+    copy bookings from '/home/alumne/bookings.csv' DELIMITER ';' QUOTE '''' CSV HEADER NULL '''';
+    copy customers from '/home/alumne/customers.csv' DELIMITER ';' QUOTE '''' CSV HEADER NULL '''';
 
 /* 5. */
 
