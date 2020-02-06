@@ -34,7 +34,7 @@
 
 /* 5. */
 
-    
+    select * from facilities;
 
 /* 6. */
 
