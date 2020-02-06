@@ -94,11 +94,15 @@
 
 /* 16. */
 
-    
+    select max(registerdate)::timestamp as mydate
+    from customers;
 
 /* 17. */
 
-
+    select concat(firstname, ' ', lastname) as fullname, registerdate::timestamp
+    from customers
+        where registerdate = (select max(registerdate)::timestamp as mydate
+                            from customers);
 
 /* 18. */
 
