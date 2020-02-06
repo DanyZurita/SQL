@@ -50,7 +50,7 @@
 
 /* 9. */
 
-    
+    select * from facilities where cust_cost = 0::money;
 
 /* 10. */
 
