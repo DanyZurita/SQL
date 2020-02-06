@@ -70,15 +70,27 @@
 
 /* 13. */
 
-    
+    select c.id, c.lastname, c.firstname, c.registerdate, b.start_datetime, f.name 
+    from customers as c, bookings as b, facilities as f
+        where b.cust_id = c.id 
+        and b.fac_id = f.id
+        and b.start_datetime > '2012-10-01'::timestamp;
 
 /* 14. */
 
-    
+    select c.id, c.lastname, c.firstname, b.start_datetime 
+    from customers as c, bookings as b
+        where b.cust_id = c.id
+        order by b.start_datetime, c.lastname, c.firstname
+        limit 10;
 
 /* 15. */
 
-    
+    select lastname as field 
+    from customers 
+        union 
+    select name 
+    from facilities;
 
 /* 16. */
 
