@@ -54,7 +54,10 @@
 
 /* 10. */
 
-    
+    select id, name, cust_cost, maintenance_cost 
+    from facilities 
+        where cust_cost != 0::money 
+        and (maintenance_cost / 50) > cust_cost;
 
 /* 11. */
 
