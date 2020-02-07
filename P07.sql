@@ -114,7 +114,10 @@
 
 /* 20. */
 
-            
+    select cc.firstname, cc.lastname
+    from customers as c, customers as cc
+        where c.recommended_id = cc.id
+        group by cc.id;      
 
 /* 21. */
 
