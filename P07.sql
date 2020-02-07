@@ -156,7 +156,10 @@
 
 /* 29. */
 
-    
+    select fac_id, sum(nhours) as num
+    from bookings
+        group by fac_id
+        having sum(nhours) > 1000;
 
 /* 30. */
 
