@@ -106,7 +106,11 @@
 
 /* 18. */
 
-    
+    select b.start_datetime, c.firstname, c.lastname
+    from customers as c, bookings as b
+        where c.id = b.cust_id
+        and c.firstname ~~ '''E%'''
+        and c.lastname ~~ '''Crumpet''';
 
 /* 19. */
 
