@@ -149,7 +149,13 @@
 
 /* 24. */
 
-    
+    select concat(c.firstname, c.lastname) as customer, f.name as facility, case when b.cust_id = 0 then f.guest_cost * b.nhours else f.cust_cost * b.nhours end as cost
+    from customers as c, facilities as f, bookings as b
+        where c.id = b.cust_id
+        and f.id = b.fac_id
+        and date '2012-09-14' = date_trunc('day', b.start_datetime)
+        and  case when b.cust_id = 0 then f.guest_cost * b.nhours else f.cust_cost * b.nhours end > 30::money
+            order by cost desc;
 
 /* 25. */
 
