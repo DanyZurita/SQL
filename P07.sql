@@ -114,7 +114,11 @@
 
 /* 19. */
 
-    
+    select b.start_datetime, f.name
+    from bookings as b, facilities as f
+        where b.fac_id = f.id
+        and f.name ~~* '''%tennis court%'''
+        and date '5/7/2012' = date_trunc('day', b.start_datetime);
 
 /* 20. */
 
