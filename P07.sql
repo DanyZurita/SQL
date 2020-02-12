@@ -166,7 +166,11 @@
 
 /* 26. */
 
-    
+    select b.fac_id, sum(b.nhours) as thour
+    from bookings as b 
+        where date '2012-09-01' = date_trunc('month', b.start_datetime)
+        group by b.fac_id
+        order by thour asc;
 
 /* 27. */
 
