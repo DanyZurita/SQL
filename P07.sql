@@ -160,7 +160,9 @@
 
 /* 25. */
 
-    
+    select distinct concat(c.firstname, c.lastname) as customer, ccc.reco
+    from customers as c left join (select concat(cc.firstname, cc.lastname) as reco, cc.id from customers as cc) as ccc on c.recommended_id = ccc.id
+        order by customer asc;
 
 /* 26. */
 
