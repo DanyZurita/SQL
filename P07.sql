@@ -137,7 +137,8 @@
 /* 22. */
 
     select concat(c.firstname, c.lastname) as customer, concat(cc.firstname, cc.lastname) as "recommended by"
-    from customers as c left join customers as cc on c.recommended_id = cc.id;
+    from customers as c left join customers as cc on c.recommended_id = cc.id
+        order by customer asc;
 
 /* 23. */
 
