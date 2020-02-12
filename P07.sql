@@ -141,7 +141,11 @@
 
 /* 23. */
 
-    
+    select distinct concat(c.firstname, c.lastname) as customer, f.name as facility
+    from customers as c, facilities as f, bookings as b
+        where c.id = b.cust_id
+        and f.id = b.fac_id
+        and f.name ~~* '%tennis court%';
 
 /* 24. */
 
