@@ -182,7 +182,9 @@
 
 /* 28. */
 
-    
+    select count(distinct b.cust_id)
+    from bookings as b
+        where b.cust_id != 0;
 
 /* 29. */
 
@@ -193,7 +195,7 @@
 
 /* 30. */
 
-            
+    
 
 /* 31. */
 
