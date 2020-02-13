@@ -174,11 +174,10 @@
 
 /* 27. */
 
-    select distinct fac_id, extract(month from start_datetime) as month, sum(nhours) as thour
+    select fac_id, extract(month from start_datetime) as month, sum(nhours) as thour
     from bookings  
-        group by fac_id, start_datetime, month
-        having start_datetime > '2012-01-01'::timestamp
-        and start_datetime < '2012-12-31'::timestamp
+        where date_part('year',start_datetime)=2012
+        group by fac_id, extract(month from start_datetime)
         order by fac_id asc, month asc, thour desc;
 
 /* 28. */
