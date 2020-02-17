@@ -195,7 +195,10 @@
 
 /* 30. */
 
-    
+    select f.name, sum(case when b.fac_id = 0 then f.guest_cost * b.nhours else f.cust_cost * b.nhours end) as renevue
+    from facilities as f, bookings as b 
+        where f.id = b.fac_id
+        group by f.name;
 
 /* 31. */
 
