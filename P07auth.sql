@@ -81,7 +81,8 @@
 
 /* 16. */
 
-    
+    revoke select on employees from adurango;
+    /* Yes, because is inherited from role group. */
 
 /* 17. */
 
