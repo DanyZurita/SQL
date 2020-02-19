@@ -34,7 +34,18 @@
 
 /* 7. */          
 
-
+    create view v_employees as
+        (select e.*
+        from employees as e, departments as d 
+            where e.dept_num = d.num 
+            and e.salary < 1500::money
+            and e.dept_num in (
+                select dept_num
+                from employees
+                group by dept_num
+                having count(dept_num) < 7));
+    
+    grant select on v_employees to adurango;
 
 /* 8. */
 
