@@ -69,15 +69,15 @@
 
 /* 13. */
 
-    
+    alter group comp01 add user adurango, pgracia;
 
 /* 14. */
 
-    
+    /* Yes, now he can. */
 
 /* 15. */
 
-    
+    /* Same, now he can. */
 
 /* 16. */
 
