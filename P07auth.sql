@@ -53,7 +53,7 @@
 
 /* 9. */
 
-    
+    create user pgracia with login password 'alualualu';
 
 /* 10. */
 
