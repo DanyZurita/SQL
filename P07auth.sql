@@ -4,7 +4,9 @@
 
 /* 2. */
 
-    
+    grant delete on employees to adurango;
+    grant select on employees to adurango;
+    grant select on occupations to adurango;
 
 /* 3. */
 
