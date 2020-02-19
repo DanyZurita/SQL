@@ -57,7 +57,7 @@
 
 /* 10. */
 
-    
+    create group comp01;
 
 /* 11. */
 
