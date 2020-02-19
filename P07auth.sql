@@ -10,7 +10,9 @@
 
 /* 3. */
 
-    
+    revoke delete on employees from adurango;
+    revoke select on employees from adurango;
+    revoke select on occupations from adurango;
 
 /* 4. */
 
