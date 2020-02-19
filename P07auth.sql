@@ -28,7 +28,9 @@
 
 /* 6. */
 
-    
+    revoke update on employees from adurango;
+    revoke select on employees from adurango;
+    revoke select on departments from adurango;
 
 /* 7. */          
 
