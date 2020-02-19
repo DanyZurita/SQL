@@ -1,6 +1,6 @@
 /* 1. */
 
-    
+    create role adurango with login password 'alualualu';
 
 /* 2. */
 
