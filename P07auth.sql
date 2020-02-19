@@ -16,7 +16,9 @@
 
 /* 4. */
 
-    
+    grant update on employees to adurango;
+    grant select on employees to adurango;
+    grant select on departments to adurango;
 
 /* 5. */
 
