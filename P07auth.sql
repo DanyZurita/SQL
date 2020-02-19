@@ -49,7 +49,7 @@
 
 /* 8. */
 
-    
+    revoke select on v_employees from adurango;
 
 /* 9. */
 
