@@ -61,7 +61,7 @@
 
 /* 11. */
 
-    
+    grant all on v_employees to comp01;
 
 /* 12. */
 
