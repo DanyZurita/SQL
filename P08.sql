@@ -1,6 +1,6 @@
 /* 1. */
 
-    
+    CREATE DATABASE sql1;
 
 /* 2. */
 
