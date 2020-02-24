@@ -4,7 +4,7 @@
 
 /* 2. */
 
-    
+    REVOKE ALL ON DATABASE sql1 FROM public;  
 
 /* 3. */
 
