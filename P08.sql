@@ -30,7 +30,8 @@
 
 /* 8. */
 
-    
+    ALTER DATABASE sql1 OWNER TO alumne; 
+    ALTER SCHEMA data OWNER TO alumne;
 
 /* 9. */
 
