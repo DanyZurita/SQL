@@ -8,15 +8,17 @@
 
 /* 3. */
 
-    
+    \c sql1
+    REVOKE ALL ON SCHEMA public FROM public;
 
 /* 4. */
 
-    
+    CREATE USER alumne WITH PASSWORD 'alualualu';
 
 /* 5. */
 
-    
+    \c sql1
+    CREATE SCHEMA data;
 
 /* 6. */
 
