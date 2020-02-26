@@ -22,7 +22,7 @@
 
 /* 6. */
 
-    
+    REVOKE ALL ON SCHEMA data FROM public;
 
 /* 7. */          
 
