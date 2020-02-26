@@ -26,7 +26,7 @@
 
 /* 7. */          
 
-
+    ALTER ROLE alumne SET search_path TO data;
 
 /* 8. */
 
