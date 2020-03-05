@@ -97,7 +97,14 @@
 
 /* 5. */
 
-    
+    /* SQL */
+    create or replace function increase_price_sqñ(prod products)
+    returns numeric as $$
+        
+    $$ LANGUAGE sql volatile;
+
+    /* PLSQL */
+
 
 /* 6. */
 
