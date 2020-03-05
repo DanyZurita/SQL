@@ -47,7 +47,37 @@
 
 /* 3. */
 
+    /* Named parameters */
+    create or replace function insert_category1_sql(pcategory integer, pname varchar)
+    returns void as $$
+        BEGIN
+        insert into categories values (pcategory, pname);
+        END
+    $$ LANGUAGE plpgsql;
 
+    /* Numbered parameters */
+    create or replace function insert_category2_sql(integer, varchar)
+    returns void as $$
+        BEGIN
+        insert into categories values ($1, $2);
+        END
+    $$ LANGUAGE plpgsql;
+
+    /* Named as table fields parameters */
+    create or replace function insert_category3_sql(category integer, categoryname varchar)
+    returns void as $$
+        BEGIN
+        insert into categories values (category, categoryname);
+        END
+    $$ LANGUAGE plpgsql;
+
+    /* Single parameter */
+    create or replace function insert_category4_sql(pcategory categories)
+    returns void as $$
+        BEGIN
+        insert into categories values ($1.category, $1.categoryname);
+        END
+    $$ LANGUAGE plpgsql;
 
 /* 4. */
 
