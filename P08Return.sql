@@ -81,7 +81,19 @@
 
 /* 4. */
 
-    
+    /* SQL */
+    create or replace function show_name_sql(id integer, OUT first varchar, OUT last varchar)
+    returns record as $$
+        select firstname, lastname from customers where id = $1
+    $$ LANGUAGE sql volatile;
+
+    /* PLSQL */
+    create or replace function show_name_plpgsql(id integer, OUT first varchar, OUT last varchar)
+    returns record as $$
+        BEGIN
+        select firstname, lastname into first, last from customers where id = $1;
+        END
+    $$ LANGUAGE plpgsql;
 
 /* 5. */
 
