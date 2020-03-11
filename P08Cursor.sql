@@ -44,7 +44,20 @@
 
 /* 3. */
 
-    
+    DO $$
+    DECLARE
+        Nums integer;
+        Names text;
+        Surnames text;
+        Dept_nums integer;
+        empCursor CURSOR (key integer) is SELECT num, name, surname, dept_num from employees where num = key;
+    BEGIN
+        OPEN empCursor(8000);
+        fetch empCursor into Nums, Names, Surnames, Dept_nums;
+        raise notice '% % % %', Nums, Names, Surnames, Dept_nums;
+        CLOSE empCursor;
+    END
+    $$ language plpgsql;
 
 /* 4. */
 
