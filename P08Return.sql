@@ -98,13 +98,19 @@
 /* 5. */
 
     /* SQL */
-    create or replace function increase_price_sqñ(prod products)
+    create or replace function increase_price_sql(prod products)
     returns numeric as $$
-        
+        update products set price = price + 0.05 * price
+        where prod_id = prod.prod_id returning price;
     $$ LANGUAGE sql volatile;
 
     /* PLSQL */
-
+    create or replace function increase_price_plpgsql(pro products)
+    returns numeric as $$
+        BEGIN
+            return update products set price = price + 0.05 * price where prod_id = prod.prod_id;
+        END
+    $$ LANGUAGE plpgsql;
 
 /* 6. */
 
