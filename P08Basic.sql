@@ -1,12 +1,6 @@
-/* 0. */
-
-    /* create database employeesdb */
-    /* \c employeesdb */
-    /* \i /mnt/c/Users/dajoz/Downloads/EMPLOYEESDB.sql */
-
 /* 1. */
 
-    
+
 
 /* 2. */
 
