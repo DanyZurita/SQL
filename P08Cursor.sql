@@ -61,7 +61,19 @@
 
 /* 4. */
 
-    
+    create or replace function numrows(tablename text) 
+    returns integer as $$
+    DECLARE
+        tablename text := $1;
+        result integer;
+        countCursor refcursor;
+    BEGIN
+        OPEN countCursor  FOR EXECUTE 'SELECT COUNT(*) FROM ' || tablename;
+        fetch countCursor into result;
+        CLOSE countCursor;
+        return result;
+    END
+    $$ language plpgsql;
 
 /* 5. */
 
