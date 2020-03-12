@@ -77,4 +77,40 @@
 
 /* 5. */
 
-    
+
+
+/* Z. */
+
+    /* Con un for */
+    CREATE or replace FUNCTION get_emp_date() RETURNS void AS $$ 
+        DECLARE 
+            e_cur CURSOR IS 
+                SELECT e.num, e.surname, e.name, e.registration_date 
+                FROM employees e 
+                ORDER BY e.surname, e.name;
+            r_emp RECORD; 
+        BEGIN 
+        FOR r_emp IN e_cur LOOP 
+            raise notice '%, %, %, %', r_emp.num, r_emp.surname, r_emp.name, r_emp.registration_date; 
+        END LOOP; 
+    END; 
+    $$ LANGUAGE plpgsql;
+
+    /* Con un while */
+    CREATE or replace FUNCTION get_emp_date2() RETURNS void AS $$ 
+        DECLARE 
+            e_cur CURSOR IS 
+                SELECT e.num, e.surname, e.name, e.registration_date 
+                FROM employees e 
+                ORDER BY e.surname, e.name;
+            r_emp RECORD; 
+        BEGIN 
+        OPEN e_cur; 
+        FETCH FROM e_cur INTO r_emp;
+        WHILE FOUND LOOP
+            raise notice '%, %, %, %', r_emp.num, r_emp.surname, r_emp.name, r_emp.registration_date; 
+            FETCH FROM e_cur INTO r_emp;
+        END LOOP;  
+        CLOSE e_cur;  
+    END; 
+    $$ LANGUAGE plpgsql;
