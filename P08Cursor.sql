@@ -114,3 +114,22 @@
         CLOSE e_cur;  
     END; 
     $$ LANGUAGE plpgsql;
+
+/* Y. */
+
+    /* With agregate function */
+    CREATE or replace FUNCTION dep_emp() RETURNS void AS $$ 
+        DECLARE 
+            e_cur CURSOR IS 
+                SELECT d.name, count(e.dept_num) as countEmp
+                FROM employees as e right join departments as d on e.dept_num = d.num
+                GROUP BY d.name;
+            r_emp RECORD; 
+        BEGIN 
+        FOR r_emp IN e_cur LOOP 
+            raise notice 'Department: % - Num. Employees: %', r_emp.name, r_emp.countEmp; 
+            END LOOP;  
+        END; 
+    $$ LANGUAGE plpgsql;
+
+    /* Without agregate function */
