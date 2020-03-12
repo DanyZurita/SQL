@@ -84,14 +84,14 @@
     /* Con un for */
     CREATE or replace FUNCTION get_emp_date() RETURNS void AS $$ 
         DECLARE 
-            e_cur CURSOR IS 
+            cursor CURSOR IS 
                 SELECT e.num, e.surname, e.name, e.registration_date 
                 FROM employees e 
                 ORDER BY e.surname, e.name;
-            r_emp RECORD; 
+            record RECORD; 
         BEGIN 
-        FOR r_emp IN e_cur LOOP 
-            raise notice '%, %, %, %', r_emp.num, r_emp.surname, r_emp.name, r_emp.registration_date; 
+        FOR record IN cursor LOOP 
+            raise notice '%, %, %, %', record.num, record.surname, record.name, record.registration_date; 
         END LOOP; 
     END; 
     $$ LANGUAGE plpgsql;
@@ -99,19 +99,19 @@
     /* Con un while */
     CREATE or replace FUNCTION get_emp_date2() RETURNS void AS $$ 
         DECLARE 
-            e_cur CURSOR IS 
+            cursor CURSOR IS 
                 SELECT e.num, e.surname, e.name, e.registration_date 
                 FROM employees e 
                 ORDER BY e.surname, e.name;
-            r_emp RECORD; 
+            record RECORD; 
         BEGIN 
-        OPEN e_cur; 
-        FETCH FROM e_cur INTO r_emp;
+        OPEN cursor; 
+        FETCH FROM cursor INTO record;
         WHILE FOUND LOOP
-            raise notice '%, %, %, %', r_emp.num, r_emp.surname, r_emp.name, r_emp.registration_date; 
-            FETCH FROM e_cur INTO r_emp;
+            raise notice '%, %, %, %', record.num, record.surname, record.name, record.registration_date; 
+            FETCH FROM cursor INTO record;
         END LOOP;  
-        CLOSE e_cur;  
+        CLOSE cursor;  
     END; 
     $$ LANGUAGE plpgsql;
 
@@ -120,16 +120,29 @@
     /* With agregate function */
     CREATE or replace FUNCTION dep_emp() RETURNS void AS $$ 
         DECLARE 
-            e_cur CURSOR IS 
+            cursor CURSOR IS 
                 SELECT d.name, count(e.dept_num) as countEmp
                 FROM employees as e right join departments as d on e.dept_num = d.num
                 GROUP BY d.name;
-            r_emp RECORD; 
+            record RECORD; 
         BEGIN 
-        FOR r_emp IN e_cur LOOP 
-            raise notice 'Department: % - Num. Employees: %', r_emp.name, r_emp.countEmp; 
+        FOR record IN cursor LOOP 
+            raise notice 'Department: % - Num. Employees: %', record.name, record.countEmp; 
             END LOOP;  
         END; 
     $$ LANGUAGE plpgsql;
 
     /* Without agregate function */
+    CREATE or replace FUNCTION dep_emp2() RETURNS void AS $$ 
+        DECLARE 
+            cursor CURSOR IS 
+                SELECT d.name, e.dept_num
+                FROM employees as e right join departments as d on e.dept_num = d.num
+                GROUP BY d.name;
+            record RECORD; 
+        BEGIN 
+        FOR record IN cursor LOOP 
+            raise notice 'Department: % - Num. Employees: %', record.name, record.countEmp; 
+            END LOOP;  
+        END; 
+    $$ LANGUAGE plpgsql;
