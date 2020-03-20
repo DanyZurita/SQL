@@ -8,7 +8,7 @@
 
 /* 1. */
 
-    CREATE PROCEDURE get_emp_date() 
+    CREATE  OR REPLACE PROCEDURE get_emp_date() 
     LANGUAGE plpgsql as $$
         DECLARE 
             cursor CURSOR IS 
@@ -29,7 +29,20 @@
 
 /* 2. */
 
-    
+    CREATE OR REPLACE PROCEDURE get_emp_date_for() 
+    LANGUAGE plpgsql as $$
+        DECLARE 
+            cursor CURSOR IS 
+                SELECT e.num, e.surname, e.name, e.registration_date 
+                FROM employees e 
+                ORDER BY e.surname, e.name;
+            record RECORD; 
+        BEGIN 
+            FOR record IN cursor LOOP 
+                raise notice '%, %, %, %', record.num, record.surname, record.name, record.registration_date; 
+            END LOOP; 
+        END; 
+    $$;
 
 /* 3. */
 
