@@ -4,9 +4,28 @@
     /* \c cursor2 */
     /* \i /mnt/c/Users/dajoz/Downloads/EMPLOYEESDB_2.sql */
 
+    /* PARA PODER UTILIZAR LAS PROCEDURES ES NECESARIO USAR POSTGRESQL 11 O SUPERIOR */
+
 /* 1. */
 
-    
+    CREATE PROCEDURE get_emp_date() 
+    LANGUAGE plpgsql as $$
+        DECLARE 
+            cursor CURSOR IS 
+                SELECT e.num, e.surname, e.name, e.registration_date 
+                FROM employees e 
+                ORDER BY e.surname, e.name;
+            record RECORD; 
+        BEGIN 
+            OPEN cursor; 
+            FETCH FROM cursor INTO record;
+            WHILE FOUND LOOP
+                raise notice '%, %, %, %', record.num, record.surname, record.name, record.registration_date; 
+                FETCH FROM cursor INTO record;
+            END LOOP;  
+            CLOSE cursor;  
+        END;
+    $$;
 
 /* 2. */
 
