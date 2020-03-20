@@ -1,6 +1,6 @@
 /* 0. */
 
-    /* create database cursor2 */
+    /* CREATE DATABASE cursor2 */
     /* \c cursor2 */
     /* \i /mnt/c/Users/dajoz/Downloads/EMPLOYEESDB_2.sql */
 
