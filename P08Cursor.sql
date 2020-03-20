@@ -123,7 +123,8 @@
             cursor CURSOR IS 
                 SELECT d.name, count(e.dept_num) as countEmp
                 FROM employees as e right join departments as d on e.dept_num = d.num
-                GROUP BY d.name;
+                GROUP BY d.name
+                ORDER BY d.name;
             record RECORD; 
         BEGIN 
         FOR record IN cursor LOOP 
