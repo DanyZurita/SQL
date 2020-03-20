@@ -92,7 +92,25 @@
 
 /* 4. */
 
-    
+    CREATE OR REPLACE PROCEDURE best_salaries()
+    LANGUAGE PLPGSQL AS $$ 
+        DECLARE 
+            cursor CURSOR IS 
+                SELECT surname, salary 
+                FROM employees 
+                ORDER BY salary DESC;
+            record RECORD;
+            i integer := 0;
+        BEGIN 
+            FOR record IN cursor LOOP
+                i := i + 1;
+                IF i <= 5 THEN
+                raise notice 'Department: % - Num. Employees: %', record.surname, record.salary;
+                ELSE EXIT;
+                END IF;
+            END LOOP;  
+        END; 
+    $$;
 
 /* 5. */
 
