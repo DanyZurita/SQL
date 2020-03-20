@@ -46,7 +46,49 @@
 
 /* 3. */
 
-    
+    /* With agregate function */
+    CREATE OR REPLACE PROCEDURE dep_emp()
+    LANGUAGE PLPGSQL AS $$ 
+        DECLARE 
+            cursor CURSOR IS 
+                SELECT d.name, count(e.dept_num) as countEmp
+                FROM employees as e right join departments as d on e.dept_num = d.num
+                GROUP BY d.name
+                ORDER BY d.name;
+            record RECORD; 
+        BEGIN 
+        FOR record IN cursor LOOP 
+            raise notice 'Department: % - Num. Employees: %', record.name, record.countEmp; 
+            END LOOP;  
+        END; 
+    $$;
+
+    /* Without agregate function */
+    CREATE OR REPLACE PROCEDURE dep_emp()
+    LANGUAGE PLPGSQL AS $$ 
+        DECLARE 
+            cursor CURSOR IS 
+                SELECT d.name, e.dept_num
+                FROM employees as e right join departments as d on e.dept_num = d.num
+                ORDER BY d.name;
+            record RECORD;
+            dep text;
+            numEmp integer;
+        BEGIN 
+            FOR record IN cursor LOOP
+                dep := record.name;
+                FOR name IN record LOOP
+                    IF record.dept_num IS NULL 
+                    THEN numEmp := numEmp + 0;
+                    ELSE numEmp := numEmp + 1;
+                    END IF;
+                END LOOP;
+                raise notice 'Department: % - Num. Employees: %', dep, numEmp;
+                numEmp := 0;
+            END LOOP;  
+        END; 
+    $$;
+
 
 /* 4. */
 
