@@ -77,7 +77,22 @@
 
 /* 5. */
 
-
+    create or replace function getemp(numEmp integer) 
+    returns record 
+    as $$
+    DECLARE
+        Nums integer;
+        Names text;
+        Surnames text;
+        Dept_nums integer;
+        empCursor CURSOR (key integer) is SELECT num, name, surname, dept_num from employees where num = key;
+    BEGIN
+        OPEN empCursor(numEmp);
+        fetch empCursor into Nums, Names, Surnames, Dept_nums;
+        return (Nums, Names, Surnames, Dept_nums);
+        CLOSE empCursor;
+    END
+    $$ language plpgsql;
 
 /* Z. */
 
