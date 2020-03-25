@@ -202,7 +202,39 @@ $$;
 
 /* 8. */
 
-    
+    DO
+    $$
+        DECLARE
+            cur CURSOR IS SELECT e.surname, e.salary, e.dept_num, d.name
+                FROM employees e FULL OUTER JOIN departments d
+                ON e.dept_num = d.num
+                ORDER BY d.name, e.surname;
+            rec RECORD;
+            dep departments.num%TYPE;
+            old_dep departments.num%TYPE;
+            num_emp integer := 0;
+            tot_emp integer := 0;
+        BEGIN
+            FOR rec IN cur LOOP
+            dep := rec.dept_num;
+            IF COALESCE(dep, 0) != COALESCE(old_dep, 0) THEN
+            IF rec.dept_num IS NOT NULL THEN
+            SELECT COUNT(num) INTO num_emp FROM employees WHERE
+            dept_num = rec.dept_num;
+            ELSE
+            num_emp := 0;
+            END IF;
+            raise notice '*** Department: % Num. Employees: %', rec.name, num_emp;
+            old_dep := dep;
+            tot_emp := tot_emp + num_emp;
+            END IF;
+            IF rec.dept_num IS NOT NULL THEN
+            raise notice 'Employee: % - % ', rec.surname, rec.salary;
+            END IF;
+            END LOOP;
+            raise notice '*** Total num. employees: %', tot_emp;
+        END
+    $$;
 
 /* 9. */
 
