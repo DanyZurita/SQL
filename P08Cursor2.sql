@@ -185,7 +185,20 @@ $$;
 
 /* 7. */          
 
-    
+    DO
+    $$
+    DECLARE
+        cursor2 CURSOR IS
+            SELECT num, name
+            FROM departments
+            ORDER BY name;
+        record2 RECORD;
+    BEGIN
+        FOR record2 IN cursor2 LOOP
+            RAISE NOTICE '*** Department: %', record2.name;
+            CALL emp_department(record2.num);
+        END LOOP;
+    END $$;
 
 /* 8. */
 
