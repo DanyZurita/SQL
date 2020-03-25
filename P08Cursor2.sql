@@ -166,25 +166,26 @@
 
 /* 6. */
 
-    CREATE or replace PROCEDURE emp_department(dep employees.dept_num%TYPE)
+    CREATE or REPLACE PROCEDURE emp_department(DepEmp employees.dept_num%TYPE)
     LANGUAGE plpgsql
     AS $$
-        DECLARE
-        cursor CURSOR (pdep employees.dept_num%TYPE) IS SELECT *
-            FROM EMPLOYEES
-            WHERE dept_num = pdep;
-        record RECORD;
-        BEGIN
-            FOR record IN cursor(dep) LOOP
-                raise notice 'Num: % - Surname: % - Occupation: %',
-                record.num, record.surname, record.occupation;
-            END LOOP;
-        END; 
-    $$;
+    DECLARE
+        cursor1 CURSOR (TwoDepEmp employees.dept_num%TYPE) IS
+            SELECT *
+            FROM employees
+            WHERE dept_num = TwoDepEmp;
+        record1 RECORD;
+    BEGIN
+        FOR record1 IN cursor1(DepEmp) LOOP
+            RAISE NOTICE 'Num: % - Surname: % - Occupation: %',
+            record1.num, record1.surname, record1.occupation;
+        END LOOP;
+    END;
+$$;
 
 /* 7. */          
 
-
+    
 
 /* 8. */
 
