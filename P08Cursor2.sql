@@ -119,7 +119,50 @@
 
 /* 5. */
 
-    
+    /* With window function */
+    CREATE or replace PROCEDURE salaries_occupation_v1()
+    LANGUAGE plpgsql
+    AS $$
+        DECLARE
+            e_cur CURSOR IS
+            SELECT occupation, surname, salary, rank()
+
+            OVER (PARTITION BY occupation ORDER BY salary desc) AS pos
+            FROM EMPLOYEES;
+            r_emp RECORD;
+        BEGIN
+            FOR r_emp IN e_cur LOOP
+                IF r_emp.pos = 1 THEN
+                raise notice 'Employee: % - Salary: % - Occupation: %',
+                r_emp.surname, r_emp.salary, r_emp.occupation;
+                END IF;
+            END LOOP;
+        END; 
+    $$;
+
+    /* Without window function */
+    CREATE OR REPLACE PROCEDURE salaries_occupation_v2()
+    LANGUAGE plpgsql
+    AS $$
+        DECLARE
+        salarymax INTEGER := 0;
+        lastocup text = ' ';
+        rec RECORD;
+        cursor CURSOR FOR SELECT surname, salary, occupation 
+            FROM employees 
+            ORDER BY occupation, salary DESC;
+        BEGIN
+            FOR rec IN cursor LOOP
+                IF rec.occupation <> lastocup THEN
+                lastocup := rec.occupation;
+                salarymax := rec.salary;
+                END IF;
+                IF rec.salary = salarymax AND rec.occupation = lastocup 
+                THEN RAISE NOTICE 'Employee: % - Salary: % - Occupation: %', rec.surname, rec.salary, rec.occupation;
+                END IF;
+            END LOOP;
+        END;
+    $$;
 
 /* 6. */
 
