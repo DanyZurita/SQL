@@ -64,31 +64,36 @@
     $$;
 
     /* Without agregate function */
-    CREATE OR REPLACE PROCEDURE dep_emp()
-    LANGUAGE PLPGSQL AS $$ 
-        DECLARE 
-            cursor CURSOR IS 
-                SELECT d.name, e.dept_num
-                FROM employees as e right join departments as d on e.dept_num = d.num
-                ORDER BY d.name;
-            record RECORD;
-            dep text;
-            numEmp integer;
-        BEGIN 
-            FOR record IN cursor LOOP
-                dep := record.name;
-                FOR name IN record LOOP
-                    IF record.dept_num IS NULL 
-                    THEN numEmp := numEmp + 0;
-                    ELSE numEmp := numEmp + 1;
-                    END IF;
-                END LOOP;
-                raise notice 'Department: % - Num. Employees: %', dep, numEmp;
-                numEmp := 0;
-            END LOOP;  
-        END; 
+    CREATE or replace PROCEDURE dep_num_v2()
+    language plpgsql
+    AS $$
+    DECLARE
+        cur CURSOR FOR SELECT d.name AS dname, e.num FROM departments d
+                    LEFT OUTER JOIN employees e
+                    ON e.dept_num=d.num
+                    ORDER BY d.name;
+        numemp int := 0;
+        old_dept text := NULL;
+    BEGIN
+        FOR rec IN cur LOOP
+            IF old_dept is NOT NULL AND old_dept != rec.dname THEN
+                RAISE NOTICE 'Department: % - Num. employees: %', old_dept, numemp;
+                old_dept := rec.dname;
+                IF rec.num IS NOT NULL THEN
+                    numemp := 1;
+                ELSE
+                    numemp := 0;
+                END IF;
+            ELSE
+                old_dept := rec.dname;
+                IF rec.num IS NOT NULL THEN
+                    numemp := numemp + 1;
+                END IF;
+            END IF;
+        END LOOP;
+        RAISE NOTICE 'Department: % - Num. employees: %', old_dept, numemp;
+    END; 
     $$;
-
 
 /* 4. */
 
