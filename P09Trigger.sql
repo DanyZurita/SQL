@@ -192,7 +192,7 @@
 
 /* 9. */
 
-    
+    select * from information_schema.trggers;
 
 /* 10. */
 
