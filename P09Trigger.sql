@@ -100,7 +100,10 @@
 
 /* 5. */
 
+    /* Yes, because if you update both name and town later you wont know the exact row that had those parameters without looking the name in the register and looking for it in departments as many time it has been changed. */
     
+    ALTER TABLE audit_dep ADD COLUMN num INTEGER;
+    ALTER TABLE audit_dep ADD CONSTRAINT audit_dep_pkey PRIMARY KEY (num, ad_date);
 
 /* 6. */
 
