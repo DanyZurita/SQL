@@ -196,8 +196,8 @@
 
 /* 10. */
 
-    ALTER TABLE departments DISABLE TRIGGER ALL
-    ALTER TABLE employees DISABLE TRIGGER ALL
+    ALTER TABLE departments DISABLE TRIGGER ALL;
+    ALTER TABLE employees DISABLE TRIGGER ALL;
 
 /* 11. */
 
