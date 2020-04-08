@@ -103,6 +103,7 @@
     /* Yes, because if you update both name and town later you wont know the exact row that had those parameters without looking the name in the register and looking for it in departments as many time as it has been changed. */
     
     ALTER TABLE audit_dep ADD COLUMN num INTEGER;
+
     ALTER TABLE audit_dep ADD CONSTRAINT audit_dep_pkey PRIMARY KEY (num, ad_date);
 
 /* 6. */
@@ -136,6 +137,7 @@
     /* The execution of the trigger will be executed for each row (several times) or only when the sentence is executed (one time): Executed for every row inserted without min salary */
 
     ALTER TABLE employees DISABLE TRIGGER insert_mondays;
+
     CREATE or replace FUNCTION emp_min_salary() RETURNS TRIGGER AS
     $$
     BEGIN
@@ -152,11 +154,41 @@
     CREATE TRIGGER emp_min_salary
         AFTER INSERT ON employees
             FOR EACH ROW EXECUTE PROCEDURE emp_min_salary();
+
     ALTER TABLE employees ENABLE TRIGGER insert_mondays;
 
 /* 8. */
 
-    
+    /* Name to assign to the trigger: emp_min_salary */
+    /* Name to assign to the function runned by the TRIGGER: emp_min_salary() */
+    /* Table on what the trigger will ‘jump’ when an operation is performed: employees */
+    /* When the trigger will be executed (BEFORE or AFTER): AFTER */
+    /* Operation that will activate the trigger: INSERT */
+    /* The execution of the trigger will be executed for each row (several times) or only when the sentence is executed (one time): Executed for every row inserted without min salary */
+
+    CREATE or replace VIEW full_employees AS 
+        SELECT e.num, e.surname, e.name, e.occupation, e.manager, e.registration_date, e.salary, e.commission, e.dept_num, d.name AS dname, d.town
+        FROM employees e LEFT OUTER JOIN departments d ON e.dept_num=d.num;
+
+    ALTER TABLE employees DISABLE TRIGGER insert_mondays;
+
+    CREATE or replace FUNCTION f_insert_full_employees() RETURNS TRIGGER AS
+    $$
+    BEGIN
+    INSERT INTO departments (num, name, town)
+    SELECT s.dept_num, s.dname, s.town
+    FROM  (SELECT NEW.*) AS s;
+
+    INSERT INTO employees (num, surname, name, occupation, manager, registration_date, salary, commission, dept_num)
+    SELECT s.num, s.surname, s.name, s.occupation, s.manager, s.registration_date, s.salary, s.commission, s.dept_num
+    FROM  (SELECT NEW.*) AS s;  
+    RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+
+    CREATE TRIGGER t_insert_full_employees
+        INSTEAD OF INSERT ON full_employees
+            FOR EACH ROW EXECUTE PROCEDURE f_insert_full_employees();
 
 /* 9. */
 
