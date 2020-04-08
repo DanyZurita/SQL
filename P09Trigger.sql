@@ -1,3 +1,9 @@
+/* 0. */
+
+    /* CREATE DATABASE triggers */
+    /* \c triggers */
+    /* \i /mnt/c/Users/dajoz/Downloads/EMPLOYEESDB.sql */
+
 /* 1. */
 
     
