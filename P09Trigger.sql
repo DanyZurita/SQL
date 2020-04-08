@@ -107,7 +107,24 @@
 
 /* 6. */
 
-    
+    /* Name to assign to the trigger: palma_dep_register */
+    /* Name to assign to the function runned by the TRIGGER: register_dep_palma() */
+    /* Table on what the trigger will ‘jump’ when an operation is performed: departments */
+    /* When the trigger will be executed (BEFORE or AFTER): BEFORE */
+    /* Operation that will activate the trigger: UPDATE or INSERT */
+    /* The execution of the trigger will be executed for each row (several times) or only when the sentence is executed (one time): Executed for every row updated or inserted */
+
+    CREATE or replace FUNCTION register_dep_palma() RETURNS TRIGGER AS
+    $$
+    BEGIN
+        NEW.town := 'PALMA';
+        return NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+
+    CREATE TRIGGER palma_dep_register
+        BEFORE INSERT OR UPDATE ON departments
+            FOR EACH ROW EXECUTE PROCEDURE register_dep_palma();
 
 /* 7. */          
 
