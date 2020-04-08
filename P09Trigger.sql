@@ -100,7 +100,7 @@
 
 /* 5. */
 
-    /* Yes, because if you update both name and town later you wont know the exact row that had those parameters without looking the name in the register and looking for it in departments as many time it has been changed. */
+    /* Yes, because if you update both name and town later you wont know the exact row that had those parameters without looking the name in the register and looking for it in departments as many time as it has been changed. */
     
     ALTER TABLE audit_dep ADD COLUMN num INTEGER;
     ALTER TABLE audit_dep ADD CONSTRAINT audit_dep_pkey PRIMARY KEY (num, ad_date);
@@ -128,7 +128,30 @@
 
 /* 7. */          
 
+    /* Name to assign to the trigger: emp_min_salary */
+    /* Name to assign to the function runned by the TRIGGER: emp_min_salary() */
+    /* Table on what the trigger will ‘jump’ when an operation is performed: employees */
+    /* When the trigger will be executed (BEFORE or AFTER): AFTER */
+    /* Operation that will activate the trigger: INSERT */
+    /* The execution of the trigger will be executed for each row (several times) or only when the sentence is executed (one time): Executed for every row inserted without min salary */
 
+    ALTER TABLE employees DISABLE TRIGGER insert_mondays;
+    CREATE or replace FUNCTION emp_min_salary() RETURNS TRIGGER AS
+    $$
+    BEGIN
+        IF (NEW.salary < 900) THEN
+            RAISE EXCEPTION 'NOT MINIMUM SALARY!'
+                USING HINT = 'Minimum salary in Spain is 900€';
+            return NULL;
+        ELSE
+            return NEW;
+        END IF;
+    END;
+    $$ LANGUAGE plpgsql;
+
+    CREATE TRIGGER emp_min_salary
+        AFTER INSERT ON employees
+            FOR EACH ROW EXECUTE PROCEDURE emp_min_salary();
 
 /* 8. */
 
