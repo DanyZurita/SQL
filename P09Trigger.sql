@@ -31,7 +31,24 @@
 
 /* 2. */
 
-    
+    /* Name to assign to the trigger: dep_register */
+    /* Name to assign to the function runned by the TRIGGER: register_dep_inserts() */
+    /* Table on what the trigger will ‘jump’ when an operation is performed: departments */
+    /* When the trigger will be executed (BEFORE or AFTER): AFTER */
+    /* Operation that will activate the trigger: INSERT */
+    /* The execution of the trigger will be executed for each row (several times) or only when the sentence is executed (one time): Executed for every row inserted */
+
+    CREATE or replace FUNCTION register_dep_inserts() RETURNS TRIGGER AS
+    $$
+    BEGIN
+        INSERT INTO audit_dep VALUES (current_timestamp, current_user, 'num', TG_OP, NULL, NEW.num);
+        RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+
+    CREATE TRIGGER dep_register
+       AFTER INSERT ON departments 
+		FOR EACH ROW EXECUTE PROCEDURE register_dep_inserts();
 
 /* 3. */
 
