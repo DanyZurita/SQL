@@ -152,6 +152,7 @@
     CREATE TRIGGER emp_min_salary
         AFTER INSERT ON employees
             FOR EACH ROW EXECUTE PROCEDURE emp_min_salary();
+    ALTER TABLE employees ENABLE TRIGGER insert_mondays;
 
 /* 8. */
 
