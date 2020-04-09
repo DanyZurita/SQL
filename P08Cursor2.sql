@@ -260,7 +260,37 @@ $$;
 
 /* 10. */
 
-    
+    CREATE or replace PROCEDURE severance_pays()
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+        cur CURSOR IS
+        SELECT e.num, e.surname, e.name, d.name AS dname, e.occupation, e.salary, e.commission, trunc(extract(year from age(e.registration_date))/3) as nthreeyears, r.nemployees
+        FROM employees e LEFT OUTER JOIN departments d ON e.dept_num=d.num INNER JOIN (SELECT m.num, count(e.num) as nemployees 
+                                                                                        FROM employees m
+                                                                                        LEFT OUTER JOIN employees e ON e.manager = m.num
+                                                                                        GROUP BY m.num) as r ON r.num = e.num
+            ORDER BY e.surname, e.name;
+        rec RECORD;
+        count integer := 1;
+        three_extra CONSTANT integer := 50;
+        resp_extra CONSTANT integer := 100;
+    BEGIN
+        FOR rec IN cur LOOP
+            raise notice '******************************************************************';
+            raise notice 'Severance pay number: % Department: %', count, rec.dname;
+            raise notice 'Surname: %, Name: %', rec.surname, rec.name;
+            raise notice 'Occupation: % Salary: %', rec.occupation, rec.salary;
+            raise notice '3 full years extra (%x%): %', three_extra, rec.nthreeyears, three_extra*rec.nthreeyears;
+            raise notice 'Responsibility complement (%x%): %', resp_extra, rec.nemployees, resp_extra*rec.nemployees;
+            raise notice 'Commission: %', COALESCE(rec.commission,0);
+            raise notice '';
+            raise notice 'Total: %', rec.salary + three_extra*rec.nthreeyears + resp_extra*rec.nemployees + COALESCE(rec.commission,0);
+            raise notice '******************************************************************';
+            raise notice '';
+            count := count + 1;
+        END LOOP;
+    END; $$
 
 /* 11. */
 
