@@ -172,7 +172,7 @@
 
     ALTER TABLE employees DISABLE TRIGGER insert_mondays;
 
-    CREATE or replace FUNCTION f_insert_full_employees() RETURNS TRIGGER AS
+    CREATE or replace FUNCTION insert_on_view() RETURNS TRIGGER AS
     $$
     BEGIN
     INSERT INTO departments (num, name, town)
@@ -186,9 +186,9 @@
     END;
     $$ LANGUAGE plpgsql;
 
-    CREATE TRIGGER t_insert_full_employees
+    CREATE TRIGGER insert_on_view
         INSTEAD OF INSERT ON full_employees
-            FOR EACH ROW EXECUTE PROCEDURE f_insert_full_employees();
+            FOR EACH ROW EXECUTE PROCEDURE insert_on_view();
 
 /* 9. */
 
