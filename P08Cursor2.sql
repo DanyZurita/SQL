@@ -294,40 +294,42 @@ $$;
 
 /* 11. */
 
-    
+    CREATE or replace PROCEDURE severance_pays(
+    emp employees.num%TYPE,
+    three_extra integer,
+    resp_extra integer
+    )
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+        cur CURSOR IS
+        SELECT e.num, e.surname, e.name, d.name AS dname, e.occupation, e.salary, e.commission, trunc(extract(year from age(e.registration_date))/3) as nthreeyears, r.nemployees
+        FROM employees e LEFT OUTER JOIN departments d ON e.dept_num=d.num INNER JOIN (SELECT m.num, count(e.num) as nemployees
+                                                                                        FROM employees m
+                                                                                        LEFT OUTER JOIN employees e ON e.manager = m.num
+                                                                                        WHERE m.num = emp
+                                                                                        GROUP BY m.num) as r ON r.num = e.num
+            ORDER BY e.surname, e.name;
+        rec RECORD;
+        count integer := 1;
+    BEGIN
+        OPEN cur;
+            FETCH FROM cur INTO rec;
+            raise notice '******************************************************************';
+            raise notice 'Severance pay number: % Department: %', count, rec.dname;
+            raise notice 'Surname: %, Name: %', rec.surname, rec.name;
+            raise notice 'Occupation: % Salary: %', rec.occupation, rec.salary;
+            raise notice '3 full years extra (%x%): %', three_extra, rec.nthreeyears, three_extra*rec.nthreeyears;
+            raise notice 'Responsibility complement (%x%): %', resp_extra, rec.nemployees, resp_extra*rec.nemployees;
+            raise notice 'Commission: %', COALESCE(rec.commission,0);
+            raise notice '';
+            raise notice 'Total: %', rec.salary + three_extra*rec.nthreeyears + resp_extra*rec.nemployees + COALESCE(rec.commission,0);
+            raise notice '******************************************************************';
+            raise notice '';
+        CLOSE cur;
+    END; 
+    $$;
 
 /* 12. */
 
     
-
-/* 13. */
-
-    
-
-/* 14. */
-
-    
-
-/* 15. */
-
-    
-
-/* 16. */
-
-    
-
-/* 17. */
-
-            
-
-/* 18. */
-
-    
-
-/* 19. */
-
-    
-
-/* 20. */
-
-
