@@ -290,7 +290,8 @@ $$;
             raise notice '';
             count := count + 1;
         END LOOP;
-    END; $$
+    END; 
+    $$;
 
 /* 11. */
 
