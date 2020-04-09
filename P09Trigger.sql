@@ -217,3 +217,4 @@
 
     CALL delete_triggers_on('departments');
     CALL delete_triggers_on('employees');
+    CALL delete_triggers_on('full_employees');
