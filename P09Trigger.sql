@@ -192,7 +192,7 @@
 
 /* 9. */
 
-    select * from information_schema.trggers;
+    select * from information_schema.triggers;
 
 /* 10. */
 
@@ -201,40 +201,16 @@
 
 /* 11. */
 
-    
-
-/* 12. */
-
-    
-
-/* 13. */
-
-    
-
-/* 14. */
-
-    
-
-/* 15. */
-
-    
-
-/* 16. */
-
-    
-
-/* 17. */
-
-            
-
-/* 18. */
-
-    
-
-/* 19. */
-
-    
-
-/* 20. */
-
-
+    CREATE OR REPLACE PROCEDURE delete_triggers_on(tables text)
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+        cursor CURSOR (table1 text) is SELECT trigger_name as tname, event_object_table as ttname from information_schema.triggers where event_object_table ~* table1;
+        record RECORD;
+    BEGIN
+        FOR record in cursor(tables) LOOP
+            RAISE NOTICE 'TRIGGER " % " has been DELETED from  %', record.tname, record.ttname;
+            EXECUTE 'DROP TRIGGER ' || record.tname || ' ON ' || record.ttname || ';';
+        END LOOP;
+    END
+    $$;
