@@ -238,7 +238,25 @@ $$;
 
 /* 9. */
 
-    
+    CREATE or replace PROCEDURE upgrade_salary()
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+        cur CURSOR IS
+        SELECT e.num, e.salary, e.occupation, (s.avgsalary - e.salary)*0.5 as sal_diff
+        FROM employees e,
+            (SELECT AVG(salary) AS avgsalary, occupation
+            FROM employees
+                GROUP BY occupation) as s
+            WHERE e.occupation = s.occupation AND
+            e.salary < s.avgsalary;
+        rec RECORD;
+    BEGIN
+        FOR rec IN cur LOOP
+            UPDATE employees SET salary = salary + rec.sal_diff
+            WHERE num = rec.num;
+        END LOOP;
+    END; $$
 
 /* 10. */
 
