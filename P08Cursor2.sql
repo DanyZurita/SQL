@@ -332,4 +332,43 @@ $$;
 
 /* 12. */
 
-    
+    CREATE or replace PROCEDURE severance_pays2(
+    t_name text
+    )
+    LANGUAGE plpgsql
+    AS $$
+    DECLARE
+        t_constraint CONSTANT text := t_name || '_pk';
+        cur CURSOR IS SELECT e.num, e.surname, e.name, d.name AS dname, e.occupation, e.salary, e.commission, trunc(extract(year from age(e.registration_date))/3) as nthreeyears, r.nemployees
+        FROM employees e LEFT OUTER JOIN departments d ON e.dept_num=d.num INNER JOIN (SELECT m.num, count(e.num) as nemployees
+                                                                                        FROM employees m
+                                                                                        LEFT OUTER JOIN employees e ON e.manager = m.num
+                                                                                        GROUP BY m.num) as r ON r.num = e.num
+            ORDER BY e.surname, e.name;
+        rec RECORD;
+        count integer := 1;
+        three_extra CONSTANT integer := 50;
+        resp_extra CONSTANT integer := 100;
+    BEGIN
+        EXECUTE
+        -- you can't use %TYPE inside create table,
+        -- even if you use employees.num%TYPE
+        format('CREATE TABLE if not exists %I (
+        num integer NOT NULL,
+        surname varchar(50),
+        name varchar(50),
+        occupation varchar(50),
+        salary integer,
+        three_y_periods integer,
+        respon_comp integer,
+        constraint %I PRIMARY KEY (num));',
+        t_name, t_constraint);
+        FOR rec IN cur LOOP
+            EXECUTE
+            format('INSERT INTO %I VALUES (%s, ''%s'', ''%s'', ''%s'', %s, %s, %s);',
+            t_name, rec.num, rec.surname, rec.name,
+            rec.occupation, rec.salary, rec.nthreeyears,
+            rec.nemployees);
+        END LOOP;
+    END; 
+    $$;
