@@ -205,7 +205,7 @@
     LANGUAGE plpgsql
     AS $$
     DECLARE
-        cursor CURSOR (table1 text) is SELECT trigger_name as tname, event_object_table as ttname from information_schema.triggers where event_object_table ~* table1;
+        cursor CURSOR (table1 text) is SELECT distinct trigger_name as tname, event_object_table as ttname from information_schema.triggers where event_object_table = table1;
         record RECORD;
     BEGIN
         FOR record in cursor(tables) LOOP
@@ -214,3 +214,6 @@
         END LOOP;
     END
     $$;
+
+    CALL delete_triggers_on('departments');
+    CALL delete_triggers_on('employees');
