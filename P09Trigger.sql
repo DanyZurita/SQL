@@ -73,7 +73,7 @@
 
 /* 4. */
 
-    /* Name to assign to the trigger: del_dep_register */
+    /* Name to assign to the trigger: upd_dep_register */
     /* Name to assign to the function runned by the TRIGGER: register_dep_updates() */
     /* Table on what the trigger will ‘jump’ when an operation is performed: departments */
     /* When the trigger will be executed (BEFORE or AFTER): AFTER */
@@ -209,8 +209,8 @@
         record RECORD;
     BEGIN
         FOR record in cursor(tables) LOOP
-            RAISE NOTICE 'TRIGGER " % " has been DELETED from  %', record.tname, record.ttname;
             EXECUTE 'DROP TRIGGER ' || record.tname || ' ON ' || record.ttname || ';';
+            RAISE NOTICE 'TRIGGER " % " has been DELETED from  %', record.tname, record.ttname;            
         END LOOP;
     END
     $$;
