@@ -47,9 +47,8 @@ trigger. (3.34 points) */
 
     DROP TRIGGER forbid_upd ON triggersExam;
 
-/* 3. On the table created in exercise 1, create a new trigger (and its associated function)
-to forbid updates of the column named "mytstamp" (raise an exception). Finally, delete the 
-trigger. (3.34 points) 
+/* 3. Imagine that you created a table called "my_table" with a field "id" (PK) in exercise 1 
+and that you have this trigger on it: 
 
 CREATE or replace FUNCTION f_ex_3() RETURNS TRIGGER AS
     $$
@@ -67,6 +66,9 @@ CREATE or replace FUNCTION f_ex_3() RETURNS TRIGGER AS
     CREATE TRIGGER t_ex_3_1
         BEFORE INSERT OR DELETE ON mt_table
             FOR EACH ROW EXECUTE PROCEDURE f_ex_3();
+
+If you insert a row into the table, which values will be printed for OLD and NEW records? 
+And which values will if be printed if you delete a row? Explain your answer. (3.34 points) 
 */ 
 
 /* In the 1st case (INSERT) the NEW.id value will be the value you are inserting and the OLD.id 
