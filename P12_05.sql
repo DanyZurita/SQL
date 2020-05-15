@@ -27,4 +27,6 @@ and collection (e.g. movieStarts). */
 /* 5. Find all movies with genres “Action”, “Drama” and “Thriller” (only those ones and in any order). 
 Use $all. */
 
-    
+    db.movieStarts.find(
+        {genres: {$all: ["Action", "Drama", "Thriller"]}}
+    ).pretty()
