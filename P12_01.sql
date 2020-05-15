@@ -12,6 +12,9 @@
 /* 1. Create a database “gym” and inside that database a collection named 
 “customers”. Finally, insert the document above inside the collection. */
 
+
+    /* mongod --fork --dbpath /home/danyzurita/mongodb/data/db 
+    --logpath /home/danyzurita/mongodb/logs/log.log --port 22222 */
     use gym 
     db.customers.insertOne({
         "name": "Bob",
