@@ -40,7 +40,7 @@ additions with unordered inserts. */
 /* 3. Write data for a new company with both journaling being 
 guaranteed and not being guaranteed. */
 
-    
+    /* NO SE HACE */
 
 /* 4. Insert this json file inside a database named “tvshowsdb” 
 and into a collection named “tvshows”. To to this use mongoimport. */
