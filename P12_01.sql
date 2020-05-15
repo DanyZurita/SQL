@@ -13,8 +13,9 @@
 “customers”. Finally, insert the document above inside the collection. */
 
 
-    /* mongod --fork --dbpath /home/danyzurita/mongodb/data/db 
-    --logpath /home/danyzurita/mongodb/logs/log.log --port 22222 */
+    /* $ sudo mongod --fork --dbpath /home/danyzurita/mongodb/data/db 
+    --logpath /home/danyzurita/mongodb/logs/log.log --port 22222 
+       $ mongo --port 22222 */
     use gym 
     db.customers.insertOne({
         "name": "Bob",
