@@ -15,8 +15,13 @@ runtime lower than 100 minutes. */
 
 /* 3. Search all movies that have a genre of “drama” or “action”. */
 
-    
+    db.movieStarts.find({$or: [
+        {"genres" : "Drama"}, 
+        {"genres": "Action"}
+    ]}).pretty()
 
 /* 4. Search all movies where field “runtime” exceeded field “weight”. */
 
-    
+    db.movieStarts.find({$expr: {
+        $gt: ["$runtime", "$weight"]
+        }}).pretty()
