@@ -6,7 +6,12 @@ and collection (e.g. movieStarts). */
 /* 2. Search all movies that have a rating higher than 9.2 and a 
 runtime lower than 100 minutes. */
 
+    use boxOffice
     
+    db.movieStarts.find({$and: [
+        {"rating.average" : {$gt: 9.2}}, 
+        {"runtime" : {$lte: 100}}
+    ]}).pretty()
 
 /* 3. Search all movies that have a genre of “drama” or “action”. */
 
