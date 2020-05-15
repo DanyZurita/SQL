@@ -103,3 +103,14 @@ Finally, join all the information of the users joined with their posts. */
             text: "Ole, todo aprobado"
         }]
     },])
+
+    db.post.aggregate(
+        [{$lookup:
+            {
+                from: "users",
+                localField: "comments._auth_id",
+                foreignField: "_id",
+                as: "authorData"
+            }
+        }]
+    ).pretty()
