@@ -29,52 +29,52 @@
 
 /* 2. Insert 3 customer records with at least 1 hobby entry per customer. */
 
-db.customers.insertMany([
-    {
-        "name": "Dany",
-        "surname": "Zurita",
-        "age": 21,
-        "hobbies": [
-            {"name": "badminton", "frequency": "2 time per week"},
-            {"name": "voley", "frequency": "1 times per month"},
-            {"name": "bicking", "frequency": "5 times per week"}
-        ]
-    },
-    {
-        "name": "Isidre",
-        "surname": "Marti",
-        "age": 20,
-        "hobbies": [
-            {"name": "badminton", "frequency": "2 time per week"},
-            {"name": "voley", "frequency": "1 times per month"}
-        ]
-    },
-    {
-        "name": "Tomas",
-        "surname": "Tomasao",
-        "age": 20,
-        "hobbies": [
-            {"name": "voley", "frequency": "1 times per month"}
-        ]
-    }
-]);
+    db.customers.insertMany([
+        {
+            "name": "Dany",
+            "surname": "Zurita",
+            "age": 21,
+            "hobbies": [
+                {"name": "badminton", "frequency": "2 time per week"},
+                {"name": "voley", "frequency": "1 times per month"},
+                {"name": "bicking", "frequency": "5 times per week"}
+            ]
+        },
+        {
+            "name": "Isidre",
+            "surname": "Marti",
+            "age": 20,
+            "hobbies": [
+                {"name": "badminton", "frequency": "2 time per week"},
+                {"name": "voley", "frequency": "1 times per month"}
+            ]
+        },
+        {
+            "name": "Tomas",
+            "surname": "Tomasao",
+            "age": 20,
+            "hobbies": [
+                {"name": "voley", "frequency": "1 times per month"}
+            ]
+        }
+    ]);
 
 /* 3. Update the age of Bob Harris to 48. */
 
-db.customers.updateOne(
-    {"name": "Bob",
-    "surname": "Harris"},
-    {$set: {
-        "age" : 48
-    }}
-);
+    db.customers.updateOne(
+        {"name": "Bob",
+        "surname": "Harris"},
+        {$set: {
+            "age" : 48
+        }}
+    );
 
 /* 4. Find all customers who are older than 18. */
 
-db.customers.find({"age" : {$gt: 18}}).pretty();
+    db.customers.find({"age" : {$gt: 18}}).pretty();
 
 /* 5. Delete all patients who have tennis as a hobby. */
 
-db.customers.deleteMany(
-    {"hobbies.name" : "tennis"}
-);
+    db.customers.deleteMany(
+        {"hobbies.name" : "tennis"}
+    );
