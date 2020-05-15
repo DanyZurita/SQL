@@ -45,4 +45,4 @@ guaranteed and not being guaranteed. */
 /* 4. Insert this json file inside a database named “tvshowsdb” 
 and into a collection named “tvshows”. To to this use mongoimport. */
 
-    
+    /* $ mongoimport /home/danyzurita/Escritorio/shows.json -d tvshowsdb -c tvshows --jsonArray --drop */
