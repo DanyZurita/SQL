@@ -5,7 +5,11 @@ and collection (e.g. movieStarts). */
 
 /* 2. Find all movies with exactly two genres. */
 
-    
+    use boxOffice
+
+    db.movieStarts.find(
+        {genres: {$size: 2}}
+        ).pretty()
 
 /* 3. Find all movies with scheduled time 21:00. */
 
