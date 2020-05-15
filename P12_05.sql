@@ -13,7 +13,9 @@ and collection (e.g. movieStarts). */
 
 /* 3. Find all movies with scheduled time 21:00. */
 
-    
+    db.movieStarts.find(
+        {"schedule.time": "21:00"}
+        ).pretty()
 
 /* 4. Find all movies with scheduled time 21:00 and days Sunday. */
 
