@@ -19,7 +19,10 @@ and collection (e.g. movieStarts). */
 
 /* 4. Find all movies with scheduled time 21:00 and days Sunday. */
 
-    
+    db.movieStarts.find({$and: [
+        {"schedule.time": "21:00"},
+        {"schedule.days": "Sunday"}
+    ]}).pretty()
 
 /* 5. Find all movies with genres “Action”, “Drama” and “Thriller” (only those ones and in any order). 
 Use $all. */
