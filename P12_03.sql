@@ -21,6 +21,21 @@ into a collection - both with insertOne() and insertMany() */
 /* 2. Deliberately insert duplicate ID data and "fix" failing 
 additions with unordered inserts. */
 
+    db.companies.insertMany([{
+        _id: "000001",
+        name: "Dany Zurita SL",
+        dateOfFoundation: "07/04/2019",
+        owner: "Dany Zurita",
+        email: "dzurita@cifpfbmoll.eu"
+    },
+    {
+        _id: "000003",
+        name: "Tomás Tomasao SL",
+        dateOfFoundation: "02/10/2019",
+        owner: "Tomás Tomasao",
+        email: "ttomasao@cifpfbmoll.eu"
+    }],
+    {ordered: false})
 
 /* 3. Write data for a new company with both journaling being 
 guaranteed and not being guaranteed. */
