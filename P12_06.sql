@@ -15,7 +15,11 @@
 /* 2. Update all documents which do require a tem by addin a new field with the minimum
 number of player requiered. Use upsert. */
 
-    
+    db.sports.updateMany(
+        {requiresTeam: true},
+        {"$set": {minPlayersRequired: 6}},
+        {upsert:true}
+    )
 
 /* 3. Update all documents that require a team by increasing the number of required players
 by 10. Use upsert. */
