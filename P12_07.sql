@@ -30,4 +30,8 @@ Execution example:
 {"_id": {"gender": "female"}, "personsPerGender": 1125, "averageAge": 61.90577777777778}
 {"_id": {"gender": "male"}, "personsPerGender": 1079, "averageAge": 62.0667284} */
 
-    
+    db.contacts.aggregate([
+        {$match: {$and: [{$or: [{gender: "female"}, {gender: "male"}]}, {"dob.age": {$gt: 50}}]}},
+        {$group: {"_id": {"gender": "$gender"}, "personsPerGender": {$sum: 1}, "averageAge": {$avg: "$dob.age"}}},
+        {$sort: {personsPerGender: -1}}
+    ]).pretty()
