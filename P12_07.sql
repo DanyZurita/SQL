@@ -3,7 +3,14 @@ Execution example:
 {"_id": {"gender": "female"}, "personsPerGender": 2565}
 {"_id": {"gender": "male"}, "personsPerGender": 2435} */
 
-    
+    /* $ mongoimport /home/danyzurita/Escritorio/persons.json -d contactsDB -c contacts --jsonArray --drop */
+
+    use contactsDB
+
+    db.contacts.aggregate([
+        {$match: {$or: [{gender: "female"}, {gender: "male"}]}},
+        {$group: {_id: {gender: "$gender"}, personPerGender: {$sum: 1}}}
+    ]).pretty()
 
 /* 2. Total number of persons per gender but with age greater then 50. Sort the result by amount 
 of person per gender desc. 
