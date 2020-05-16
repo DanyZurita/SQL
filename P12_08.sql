@@ -2,7 +2,16 @@
 
 /* 1. A DBA user (name "userAdmin"). */
 
+    /* $ sudo mongod --fork --dbpath /home/danyzurita/mongodb/data/db 
+    --logpath /home/danyzurita/mongodb/logs/log.log --auth
+
+    $ mongo */
     
+    use admin
+
+    db.createUser(
+        {user: "userAdmin", pwd: "alualualu", roles: ["userAdminAnyDatabase"]}
+        )
 
 /* 2. Database Admin (name "userDbAdmin"): Work on all databases, create collections, create indexes, 
 etc. But it's not allowed to create users… */
