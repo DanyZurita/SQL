@@ -9,7 +9,7 @@ Execution example:
 
     db.contacts.aggregate([
         {$match: {$or: [{gender: "female"}, {gender: "male"}]}},
-        {$group: {_id: {gender: "$gender"}, personsPerGender: {$sum: 1}}},
+        {$group: {"_id": {"gender": "$gender"}, "personsPerGender": {$sum: 1}}},
         {$sort: {personsPerGender: -1}}
     ]).pretty()
 
@@ -21,7 +21,7 @@ Execution example:
 
     db.contacts.aggregate([
         {$match: {$and: [{$or: [{gender: "female"}, {gender: "male"}]}, {"dob.age": {$gt: 50}}]}},
-        {$group: {_id: {gender: "$gender"}, personsPerGender: {$sum: 1}}},
+        {$group: {"_id": {"gender": "$gender"}, "personsPerGender": {$sum: 1}}},
         {$sort: {personsPerGender: -1}}
     ]).pretty()
 
