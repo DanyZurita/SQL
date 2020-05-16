@@ -9,7 +9,8 @@ Execution example:
 
     db.contacts.aggregate([
         {$match: {$or: [{gender: "female"}, {gender: "male"}]}},
-        {$group: {_id: {gender: "$gender"}, personPerGender: {$sum: 1}}}
+        {$group: {_id: {gender: "$gender"}, personsPerGender: {$sum: 1}}},
+        {$sort: {personsPerGender: -1}}
     ]).pretty()
 
 /* 2. Total number of persons per gender but with age greater then 50. Sort the result by amount 
