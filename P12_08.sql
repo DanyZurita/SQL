@@ -36,6 +36,6 @@ etc. But it's not allowed to create users… */
 
 /* 5. Finally, show all the created users inside the database "admin" and "customers". */
 
-    
+    db.getUsers()
 
 /* Obviously, you must check the built-in roles… */
