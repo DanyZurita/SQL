@@ -22,7 +22,9 @@ etc. But it's not allowed to create users… */
 
 /* 3. User Admin (name "userAdm"): Allowed to manage users. */
 
-    
+    db.createUser(
+        {user: "userAdm", pwd: "alualualu", roles: ["userAdmin"]}
+        )
 
 /* 4. Developer (name "userDev"): Read and write data in "customers" and "sales" databases. */
 
