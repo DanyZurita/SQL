@@ -16,7 +16,9 @@
 /* 2. Database Admin (name "userDbAdmin"): Work on all databases, create collections, create indexes, 
 etc. But it's not allowed to create users… */
 
-    
+    db.createUser(
+        {user: "userDbAdmin", pwd: "alualualu", roles: ["readAnyDatabase", "readWriteAnyDatabase", "dbAdminAnyDatabase"]}
+        )
 
 /* 3. User Admin (name "userAdm"): Allowed to manage users. */
 
