@@ -74,4 +74,16 @@
 
 /* 5. Pick a point and find out which areas in your collection contain that point. */
 
-    
+    /* Lo probé sin index y también funcionaba */
+    db.areas.createIndex({
+        area: "2dsphere"
+    })
+
+    db.areas.find({
+        area: {$geoIntersects: {$geometry: {
+                                    type: 'Point', 
+                                    coordinates: [2.637161, 39.579635]
+                                    }
+                            }
+                }
+    }).pretty()
