@@ -58,7 +58,19 @@
 
 /* 4. Store at least one area in a different collection. */
 
-    
+    db.areas.insertOne({
+        name: 'El Fortí - Son Cotoner',
+        area: {
+            type: 'Polygon', 
+            coordinates: [[
+                [2.635882, 39.579673],
+                [2.642013, 39.580135],
+                [2.642110, 39.576802],
+                [2.636413, 39.576182],
+                [2.635882, 39.579673]
+                ]]
+            }
+    })
 
 /* 5. Pick a point and find out which areas in your collection contain that point. */
 
