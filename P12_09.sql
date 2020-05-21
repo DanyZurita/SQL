@@ -44,7 +44,17 @@
 
 /* 3. Pick an area and see which points (that are stored in your collection) it contains. */
 
-    
+    db.places.find({
+        location : {$geoWithin: {$geometry: {type: 'Polygon', 
+                                            coordinates: [[[2.635882, 39.579673],
+                                                            [2.642013, 39.580135],
+                                                            [2.642110, 39.576802],
+                                                            [2.636413, 39.576182],
+                                                            [2.635882, 39.579673]]]
+                                            }
+                                }
+                  }
+        }).pretty()
 
 /* 4. Store at least one area in a different collection. */
 
