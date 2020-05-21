@@ -28,7 +28,15 @@
 
 /* 2. Pick a point and find the nearest points within a min and max distance. */
 
-    
+    db.places.finf({
+        location : {$near: {$geometry: {type: 'Point', 
+                                        coordinates: [2.637161, 39.579635]
+                                        },
+                                        $minDistance: 0,
+                                        $maxDistance: 50
+                            }
+                    }
+    }).pretty()
 
 /* 3. Pick an area and see which points (that are stored in your collection) it contains. */
 
