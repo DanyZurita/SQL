@@ -10,7 +10,7 @@
     use admin
 
     db.createUser(
-        {user: "userAdmin", pwd: "alualualu"}
+        {user: "userAdmin", pwd: "alualualu", roles: ["userAdmin"]}
         )
 
 /* 2. Database Admin (name "userDbAdmin"): Work on all databases, create collections, create indexes, 
