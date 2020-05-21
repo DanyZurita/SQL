@@ -28,7 +28,11 @@
 
 /* 2. Pick a point and find the nearest points within a min and max distance. */
 
-    db.places.finf({
+    db.places.createIndex({
+        location: "2dsphere"
+    })
+    
+    db.places.find({
         location : {$near: {$geometry: {type: 'Point', 
                                         coordinates: [2.637161, 39.579635]
                                         },
