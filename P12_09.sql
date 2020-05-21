@@ -74,7 +74,7 @@
 
 /* 5. Pick a point and find out which areas in your collection contain that point. */
 
-    /* I tried withou index and still worked */
+    /* I tried without index and still worked */
     db.areas.createIndex({
         area: "2dsphere"
     })
