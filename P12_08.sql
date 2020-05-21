@@ -34,6 +34,17 @@ etc. But it's not allowed to create users… */
 
     db.updateUser("userDev", {roles: [{role: "readWrite", db: "customers"}, {role: "readWrite", db: "sales"}]})
 
+    /* Or */
+
+    db.createUser({
+        user: "userDev",
+        pwd: "alualualu",
+        roles: [
+            {role: "readWrite", db: "customers"},
+            {role: "readWrite", db: "sales"}
+        ]
+    })
+
 /* 5. Finally, show all the created users inside the database "admin" and "customers". */
 
     use admin
