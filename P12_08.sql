@@ -47,10 +47,10 @@ etc. But it's not allowed to create users… */
 
 /* 5. Finally, show all the created users inside the database "admin" and "customers". */
 
-    use admin
-    db.system.users.find().pretty()
+    db.getUsers()
 
     /* Or */
-    db.getUsers()
+    use admin
+    db.system.users.find().pretty()
 
 /* Obviously, you must check the built-in roles… */
