@@ -90,7 +90,7 @@ VALUES
 
 /* 3. Show the current value of both sequences in a single query. */
 
-    
+    select currval('pk10') as pk10, currval('pk1000') as pk1000;
 
 /* 4. Alter the sequence that you created for the table named ‘employees’. Make it inverse 
 beginning by 10000 and decrementing by 1000, and minimum value must be 3000. Insert an 
