@@ -69,7 +69,24 @@ VALUES
 
 */
 
-    
+    create sequence pk1000
+    start 1000
+    increment 1000
+    minvalue 1000;
+
+    create table employees (
+	num INTEGER DEFAULT nextval('pk1000') NOT NULL PRIMARY KEY,
+	surname text NOT NULL,
+	name text NOT NULL,
+	occupation text,
+	manager INTEGER,
+	registration_date DATE,
+	salary INTEGER,
+	commission INTEGER,	
+	dept_num INTEGER,
+    FOREIGN KEY (dept_num)  REFERENCES departments (num),
+    FOREIGN KEY (manager)  REFERENCES employees (num)
+    );
 
 /* 3. Show the current value of both sequences in a single query. */
 
