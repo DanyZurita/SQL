@@ -42,7 +42,18 @@ for the table ‘department’s and run it. Finally, insert the following rows:
     /* CREATE DATABASE sequence;
     \c sequence; */
 
+    create sequence pk10
+    start 10
+    increment 10
+    minvalue 10
+    maxvalue 200
+    cycle;
 
+    create table departments(
+	num INTEGER DEFAULT nextval('pk10') NOT NULL PRIMARY KEY,
+	name text NOT NULL,
+	town text
+    );
 
 /* 2. Create a sequence to implement the primary key of the table named 
 ‘employees’. The sequence must start with 1000, it must be increased by 1000, 
