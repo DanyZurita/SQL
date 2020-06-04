@@ -16,4 +16,6 @@
 
 /* 2. Explain what’s a GEOGRAPHY(point) data type. */
 
-    /*  */
+    /* Its an representation of geographical coordinates of latitud and longitude in postGIS.
+    In this case, we use 'POINT' that refers to a especific point in a map, but you can also use
+    'POLYGON' to represent an area like in MongoDB. */
