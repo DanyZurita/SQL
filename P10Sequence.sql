@@ -96,4 +96,15 @@ VALUES
 beginning by 10000 and decrementing by 1000, and minimum value must be 3000. Insert an 
 employee to test if it works. */
 
-    
+    /* Set el value a 11000 para que la proxima coja el val 10000 y no sea menos de 3000 */
+    select setval('pk1000', 11000);
+
+    alter sequence if exists pk1000
+    start with 10000
+    increment -1000
+    minvalue 3000;
+
+    INSERT INTO employees
+    (surname, name, occupation, manager, registration_date, salary, commission, dept_num)
+    VALUES
+        ('DANY','ZURITA','OWNER',NULL,'1999/04/07',2040,NULL,NULL)
