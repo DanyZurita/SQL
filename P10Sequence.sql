@@ -1,3 +1,29 @@
+/* 
+Consider the following database (do not create the tables yet):
+create table departments(
+	num INTEGER PRIMARY KEY,
+	name text NOT NULL,
+	town text
+);
+
+create table employees (
+	num 	INTEGER PRIMARY KEY,
+	surname text NOT NULL,
+	name text NOT NULL,
+	occupation text,
+	manager INTEGER,
+	registration_date DATE,
+	salary INTEGER,
+	commission INTEGER,	
+	dept_num INTEGER,
+FOREIGN KEY (dept_num)  REFERENCES departments (num),
+FOREIGN KEY (manager)  REFERENCES employees (num)
+);
+
+CREATE INDEX idx_employees_fk1 ON employees (dept_num);
+CREATE INDEX idx_employees_fk2 ON employees (manager);
+*/
+
 /* 1. Create a sequence to implement the primary key of the table named 
 ‘departments’. The sequence must start with 10, it must be increased by 10, 
 the minimum value must be 10, the maximum values must be 200, and its behaviour 
@@ -16,7 +42,7 @@ for the table ‘department’s and run it. Finally, insert the following rows:
     /* CREATE DATABASE sequence;
     \c sequence; */
 
-    
+
 
 /* 2. Create a sequence to implement the primary key of the table named 
 ‘employees’. The sequence must start with 1000, it must be increased by 1000, 
