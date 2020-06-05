@@ -24,4 +24,12 @@
 /* Backups: Create a database with your name and a table inside. Export it using pg_dump. 
 Send me an email with a screenshot of the command working. */
 
+    /*  CREATE DATABASE Dany; 
+        \c dany
+        create table dany1 (id INTEGER NOT NULL PRIMARY KEY);
+        insert into dany1 values (1);
+        insert into dany1 values (10);
+    */
 
+    /* Create a plain-text single database backup
+    $ pg_dump -h localhost -p 5432 -U postgres -C -F p -b -v -f dany.txt dany  */
