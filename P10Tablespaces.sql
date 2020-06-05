@@ -80,4 +80,20 @@ To check the tablespace of the tables after the changes:
         ORDER BY tablename;
 */
 
-    
+    DO $$
+    DECLARE 
+        rec RECORD;
+    BEGIN
+        FOR rec IN SELECT
+                tablename,
+                tablespace
+            FROM
+                pg_tables
+            WHERE
+                schemaname = 'public'
+            ORDER BY
+                tablename LOOP
+        EXECUTE FORMAT('ALTER TABLE %I SET TABLESPACE dvdrental_t;', rec.tablename);
+        RAISE NOTICE 'ALTER TABLE % SET TABLESPACE dvdrental_t;', rec.tablename;
+        END LOOP;
+    END $$;
